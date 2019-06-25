@@ -67,6 +67,32 @@ open class MJPEGStreamLib: NSObject , URLSessionDataDelegate {
         dataTask?.resume()
     }
     
+    open func sendCommand(_ command: String, completionHandler: ((String?, URLResponse?, Error?) -> Void)? = nil) {
+        if let url = URL(string: command) {
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if let error = error { //transport error has occurred
+                    completionHandler?(nil, response, error)
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse,
+                    (200...299).contains(httpResponse.statusCode) else {
+                        completionHandler?(nil, response, error)
+                        return
+                }
+                if let mimeType = httpResponse.mimeType, mimeType == "text/plain",
+                    let responseData = data,
+                    let responseValue = String(data: responseData, encoding: .utf8) {
+                    completionHandler?(responseValue, response, error)
+                }
+                else {
+                    completionHandler?(nil, response, error)
+                }
+            }
+            task.resume()
+        }
+    }
+    
     // Stop the stream function
     open func stop(){
         status = .stop

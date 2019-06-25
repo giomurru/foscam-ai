@@ -29,28 +29,51 @@
                                 <rect key="frame" x="0.0" y="662" width="414" height="200"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="xbB-YB-kHO">
-                                        <rect key="frame" x="103.5" y="50" width="207" height="100"/>
+                                        <rect key="frame" x="47" y="50" width="320" height="100"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dh-Lb-qCu">
+                                                <rect key="frame" x="0.0" y="35" width="73" height="30"/>
+                                                <state key="normal" title="IR ON/OFF"/>
+                                                <connections>
+                                                    <action selector="toggleIR:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PGZ-0g-IfH"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLo-qj-plD">
-                                                <rect key="frame" x="0.0" y="35" width="35" height="30"/>
+                                                <rect key="frame" x="113" y="35" width="35" height="30"/>
                                                 <state key="normal" title="LEFT"/>
+                                                <connections>
+                                                    <action selector="moveCameraLeft:" destination="BYZ-38-t0r" eventType="touchDown" id="LPR-9W-kIH"/>
+                                                    <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Wd-Ex-zRN"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="adC-XL-TWy">
-                                                <rect key="frame" x="75" y="0.0" width="47" height="100"/>
+                                                <rect key="frame" x="188" y="0.0" width="47" height="100"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fz0-S4-Dr2">
                                                         <rect key="frame" x="0.0" y="0.0" width="47" height="30"/>
                                                         <state key="normal" title="UP"/>
+                                                        <connections>
+                                                            <action selector="moveCameraUp:" destination="BYZ-38-t0r" eventType="touchDown" id="v7k-vc-rGj"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2nV-gz-jKC"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-sp-s6U">
                                                         <rect key="frame" x="0.0" y="70" width="47" height="30"/>
                                                         <state key="normal" title="DOWN"/>
+                                                        <connections>
+                                                            <action selector="moveCameraDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Lxj-es-mGk"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="REY-d5-mwo"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RL9-KE-2Ff">
-                                                <rect key="frame" x="162" y="35" width="45" height="30"/>
+                                                <rect key="frame" x="275" y="35" width="45" height="30"/>
                                                 <state key="normal" title="RIGHT"/>
+                                                <connections>
+                                                    <action selector="moveCameraRight:" destination="BYZ-38-t0r" eventType="touchDown" id="Ioy-M6-9UB"/>
+                                                    <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ebi-tu-mcj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
