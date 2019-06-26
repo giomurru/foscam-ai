@@ -11,22 +11,45 @@ import Cocoa
 class ViewController: NSViewController, MJPEGLibDelegate {
 
     @IBOutlet weak var imageView: NSImageView!
-    var stream: MJPEGLib!
-    var url: URL?
-    var IRisOn : Bool = false
-    let credentials : String = "user=admin&pwd=45gnAX.%2F114"
-    let domain : String = "http://192.168.1.112"
+    
+    var cameraController : FoscamControl!;
+    
+    @IBAction func toggleIR(_ sender: NSButton) {
+        cameraController.toggleIR()
+    }
+    
+    @IBAction func moveCameraRight(_ sender: NSButton) {
+        print("move camera right")
+        cameraController.moveRight()
+    }
+    
+    @IBAction func moveCameraLeft(_ sender: NSButton) {
+        print("move camera left")
+        cameraController.moveLeft()
+        
+    }
+    @IBAction func moveCameraDown(_ sender: NSButton) {
+        print("move camera down")
+        cameraController.moveDown()
+    }
+    
+    @IBAction func moveCameraUp(_ sender: NSButton) {
+        print("move camera up")
+        cameraController.moveUp()
+    }
+    
+    @IBAction func stopCamera(_ sender: NSButton) {
+        print("stop camera")
+        cameraController.stop()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         // Set the ImageView to the stream object
-        if let url = URL(string: "http://192.168.1.112/videostream.cgi?\(credentials)&resolution=640x480") {
-            stream = MJPEGLib(contentURL: url)
-            stream.delegate = self
-            stream.play()
-        }
+        cameraController = FoscamControl(with: "192.168.1.112", user: "admin", password: "45gnAX.%2F114", streamDelegate: self)
+        cameraController.startStreaming()
     }
     
     func didStartPlaying() {

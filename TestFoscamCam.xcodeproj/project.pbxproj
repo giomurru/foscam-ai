@@ -18,6 +18,8 @@
 		3F9A7E2322C26CBD00EB2D15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2122C26CBD00EB2D15 /* LaunchScreen.storyboard */; };
 		3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
 		3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
+		3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
+		3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,7 @@
 		3F9A7E2222C26CBD00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F9A7E2422C26CBD00EB2D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGLib.swift; sourceTree = "<group>"; };
+		3FB422E022C3951B00BA3B71 /* FoscamControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoscamControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */,
+				3FB422E022C3951B00BA3B71 /* FoscamControl.swift */,
 			);
 			path = MJPEGLib;
 			sourceTree = "<group>";
@@ -215,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */,
 				3F2253DE22C2D4760092AF77 /* AppDelegate.swift in Sources */,
 				3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */,
@@ -225,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */,
 				3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
