@@ -34,18 +34,19 @@ enum CameraCommands : Int {
     case IO_OFF=94;
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MJPEGLibDelegate {
     
     // FLAG TO CHANGE PTZ
     //var ptz_type = 0;
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
-    var stream: MJPEGStreamLib!
+    var stream: MJPEGLib!
     var url: URL?
     var IRisOn : Bool = false
     let credentials : String = "user=admin&pwd=45gnAX.%2F114"
     let domain : String = "http://192.168.1.112"
+    //let domain : String = "http://gf7651.myfoscam.org"
     
     @IBAction func toggleIR(_ sender: UIButton) {
         if IRisOn {
@@ -105,24 +106,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the ImageView to the stream object
-        stream = MJPEGStreamLib(imageView: imageView)
-        // Start Loading Indicator
-        stream.didStartLoading = { [unowned self] in
-            self.loadingIndicator.startAnimating()
+        if let url = URL(string: "http://192.168.1.112/videostream.cgi?\(credentials)") {
+            stream = MJPEGLib(contentURL: url)
+            stream.delegate = self
+            loadingIndicator.startAnimating()
+            stream.play()
         }
-        // Stop Loading Indicator
-        stream.didFinishLoading = { [unowned self] in
-            self.loadingIndicator.stopAnimating()
-            self.getCameraParameters()
-        }
-        
-        // Your stream url should be here !
-        let url = URL(string: "http://192.168.1.112/videostream.cgi?\(credentials)&resolution=640x480")
-        
-        
-        stream.contentURL = url
-        stream.play() // Play the stream
     }
     
     override func didReceiveMemoryWarning() {
@@ -133,6 +122,20 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
         //return UIStatusBarStyle.default   // Make dark again
+    }
+    
+    //MARK: MJPEGLibDelegate methods
+    func didStartPlaying() {
+        print("did start playing")
+        loadingIndicator.stopAnimating()
+    }
+    
+    func session(_ session: URLSession, didUpdate imageData: Data) {
+        DispatchQueue.main.async {
+            if let image = UIImage(data: imageData) {
+                self.imageView.image = image
+            }
+        }
     }
 }
 

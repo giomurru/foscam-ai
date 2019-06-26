@@ -6,9 +6,20 @@
 //  Copyright © 2019 Giovanni Murru. All rights reserved.
 //
 
+#if os(OSX)
+import Cocoa
+#elseif os(iOS)
 import UIKit
+#endif
 
-open class MJPEGStreamLib: NSObject , URLSessionDataDelegate {
+protocol MJPEGLibDelegate : AnyObject {
+    func session(_ session: URLSession, didUpdate imageData: Data)
+    func didStartPlaying()
+}
+
+open class MJPEGLib: NSObject , URLSessionDataDelegate {
+    
+    weak var delegate: MJPEGLibDelegate?
     
     fileprivate enum StreamStatus {
         case stop
@@ -22,19 +33,15 @@ open class MJPEGStreamLib: NSObject , URLSessionDataDelegate {
     fileprivate var status: StreamStatus = .stop
     
     open var authenticationHandler: ((URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, URLCredential?))?
-    open var didStartLoading: (()->Void)?
-    open var didFinishLoading: (()->Void)?
     open var contentURL: URL?
-    open var imageView: UIImageView
     
-    public init(imageView: UIImageView) {
-        self.imageView = imageView
+    override init() {
         super.init()
         self.session = Foundation.URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
     }
     
-    public convenience init(imageView: UIImageView, contentURL: URL) {
-        self.init(imageView: imageView)
+    public convenience init(contentURL: URL) {
+        self.init()
         self.contentURL = contentURL
     }
     
@@ -59,8 +66,6 @@ open class MJPEGStreamLib: NSObject , URLSessionDataDelegate {
         }
         
         status = .loading
-        DispatchQueue.main.async { self.didStartLoading?() }
-        
         receivedData = NSMutableData()
         let request = URLRequest(url: url)
         dataTask = session.dataTask(with: request)
@@ -103,16 +108,15 @@ open class MJPEGStreamLib: NSObject , URLSessionDataDelegate {
     
     open func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         // Controlling the imageData is not nil
-        if let imageData = receivedData , imageData.length > 0,
-            let receivedImage = UIImage(data: imageData as Data) {
+        if let imageData = receivedData , imageData.length > 0 {
             if status == .loading {
                 status = .play
-                DispatchQueue.main.async { self.didFinishLoading?() }
+                DispatchQueue.main.async {
+                    self.delegate?.didStartPlaying()
+                }
             }
-            // Set the imageview as received stream
-            DispatchQueue.main.async { self.imageView.image = receivedImage }
+            delegate?.session(session, didUpdate: imageData as Data)
         }
-        
         receivedData = NSMutableData()
         completionHandler(.allow)
     }

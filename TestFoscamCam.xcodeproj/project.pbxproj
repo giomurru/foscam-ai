@@ -7,26 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F2253DE22C2D4760092AF77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2253DD22C2D4760092AF77 /* AppDelegate.swift */; };
+		3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2253DF22C2D4760092AF77 /* ViewController.swift */; };
+		3F2253E222C2D4760092AF77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F2253E122C2D4760092AF77 /* Assets.xcassets */; };
+		3F2253E522C2D4760092AF77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F2253E322C2D4760092AF77 /* Main.storyboard */; };
 		3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */; };
 		3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */; };
 		3F9A7E1E22C26CBA00EB2D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */; };
 		3F9A7E2022C26CBD00EB2D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */; };
 		3F9A7E2322C26CBD00EB2D15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2122C26CBD00EB2D15 /* LaunchScreen.storyboard */; };
-		3F9A7E2B22C26CF300EB2D15 /* MJPEGStreamLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGStreamLib.swift */; };
+		3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
+		3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFoscamCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F2253DB22C2D4750092AF77 /* TestFoscamCam_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFoscamCam_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F2253DD22C2D4760092AF77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F2253DF22C2D4760092AF77 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F2253E122C2D4760092AF77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F2253E422C2D4760092AF77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F2253E622C2D4760092AF77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F2253E722C2D4760092AF77 /* TestFoscamCam_osx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestFoscamCam_osx.entitlements; sourceTree = "<group>"; };
+		3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFoscamCam_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F9A7E1D22C26CBA00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F9A7E2222C26CBD00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F9A7E2422C26CBD00EB2D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F9A7E2A22C26CF300EB2D15 /* MJPEGStreamLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGStreamLib.swift; sourceTree = "<group>"; };
+		3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGLib.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F2253D822C2D4750092AF77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F9A7E1222C26CBA00EB2D15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,10 +56,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F2253DC22C2D4760092AF77 /* TestFoscamCam_osx */ = {
+			isa = PBXGroup;
+			children = (
+				3F2253DD22C2D4760092AF77 /* AppDelegate.swift */,
+				3F2253DF22C2D4760092AF77 /* ViewController.swift */,
+				3F2253E122C2D4760092AF77 /* Assets.xcassets */,
+				3F2253E322C2D4760092AF77 /* Main.storyboard */,
+				3F2253E622C2D4760092AF77 /* Info.plist */,
+				3F2253E722C2D4760092AF77 /* TestFoscamCam_osx.entitlements */,
+			);
+			path = TestFoscamCam_osx;
+			sourceTree = "<group>";
+		};
 		3F9A7E0C22C26CBA00EB2D15 = {
 			isa = PBXGroup;
 			children = (
+				3FB422DE22C36A4C00BA3B71 /* MJPEGLib */,
 				3F9A7E1722C26CBA00EB2D15 /* TestFoscamCam */,
+				3F2253DC22C2D4760092AF77 /* TestFoscamCam_osx */,
 				3F9A7E1622C26CBA00EB2D15 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,7 +82,8 @@
 		3F9A7E1622C26CBA00EB2D15 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam.app */,
+				3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam_ios.app */,
+				3F2253DB22C2D4750092AF77 /* TestFoscamCam_osx.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,7 +93,6 @@
 			children = (
 				3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */,
 				3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */,
-				3F9A7E2A22C26CF300EB2D15 /* MJPEGStreamLib.swift */,
 				3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */,
 				3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */,
 				3F9A7E2122C26CBD00EB2D15 /* LaunchScreen.storyboard */,
@@ -67,12 +101,37 @@
 			path = TestFoscamCam;
 			sourceTree = "<group>";
 		};
+		3FB422DE22C36A4C00BA3B71 /* MJPEGLib */ = {
+			isa = PBXGroup;
+			children = (
+				3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */,
+			);
+			path = MJPEGLib;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F9A7E1422C26CBA00EB2D15 /* TestFoscamCam */ = {
+		3F2253DA22C2D4750092AF77 /* TestFoscamCam_osx */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F9A7E2722C26CBD00EB2D15 /* Build configuration list for PBXNativeTarget "TestFoscamCam" */;
+			buildConfigurationList = 3F2253E822C2D4760092AF77 /* Build configuration list for PBXNativeTarget "TestFoscamCam_osx" */;
+			buildPhases = (
+				3F2253D722C2D4750092AF77 /* Sources */,
+				3F2253D822C2D4750092AF77 /* Frameworks */,
+				3F2253D922C2D4750092AF77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestFoscamCam_osx;
+			productName = TestFoscamCam_osx;
+			productReference = 3F2253DB22C2D4750092AF77 /* TestFoscamCam_osx.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3F9A7E1422C26CBA00EB2D15 /* TestFoscamCam_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F9A7E2722C26CBD00EB2D15 /* Build configuration list for PBXNativeTarget "TestFoscamCam_ios" */;
 			buildPhases = (
 				3F9A7E1122C26CBA00EB2D15 /* Sources */,
 				3F9A7E1222C26CBA00EB2D15 /* Frameworks */,
@@ -82,9 +141,9 @@
 			);
 			dependencies = (
 			);
-			name = TestFoscamCam;
+			name = TestFoscamCam_ios;
 			productName = TestFoscamCam;
-			productReference = 3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam.app */;
+			productReference = 3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam_ios.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -97,6 +156,14 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Giovanni Murru";
 				TargetAttributes = {
+					3F2253DA22C2D4750092AF77 = {
+						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
 					3F9A7E1422C26CBA00EB2D15 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -115,12 +182,22 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F9A7E1422C26CBA00EB2D15 /* TestFoscamCam */,
+				3F9A7E1422C26CBA00EB2D15 /* TestFoscamCam_ios */,
+				3F2253DA22C2D4750092AF77 /* TestFoscamCam_osx */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F2253D922C2D4750092AF77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F2253E222C2D4760092AF77 /* Assets.xcassets in Resources */,
+				3F2253E522C2D4760092AF77 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F9A7E1322C26CBA00EB2D15 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,19 +211,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F2253D722C2D4750092AF77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */,
+				3F2253DE22C2D4760092AF77 /* AppDelegate.swift in Sources */,
+				3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F9A7E1122C26CBA00EB2D15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */,
 				3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */,
-				3F9A7E2B22C26CF300EB2D15 /* MJPEGStreamLib.swift in Sources */,
+				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3F2253E322C2D4760092AF77 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F2253E422C2D4760092AF77 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -166,6 +261,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3F2253E922C2D4760092AF77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TestFoscamCam_osx/TestFoscamCam_osx.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = T7NF5AK38P;
+				INFOPLIST_FILE = TestFoscamCam_osx/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gmurru.TestFoscamCam-osx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3F2253EA22C2D4760092AF77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TestFoscamCam_osx/TestFoscamCam_osx.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = T7NF5AK38P;
+				INFOPLIST_FILE = TestFoscamCam_osx/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gmurru.TestFoscamCam-osx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		3F9A7E2522C26CBD00EB2D15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -321,6 +460,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F2253E822C2D4760092AF77 /* Build configuration list for PBXNativeTarget "TestFoscamCam_osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F2253E922C2D4760092AF77 /* Debug */,
+				3F2253EA22C2D4760092AF77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3F9A7E1022C26CBA00EB2D15 /* Build configuration list for PBXProject "TestFoscamCam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -330,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F9A7E2722C26CBD00EB2D15 /* Build configuration list for PBXNativeTarget "TestFoscamCam" */ = {
+		3F9A7E2722C26CBD00EB2D15 /* Build configuration list for PBXNativeTarget "TestFoscamCam_ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F9A7E2822C26CBD00EB2D15 /* Debug */,
