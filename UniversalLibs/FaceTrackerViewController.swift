@@ -5,16 +5,23 @@
 //  Created by Giovanni Murru on 27/06/2019.
 //  Copyright © 2019 Giovanni Murru. All rights reserved.
 //
-
+#if os(OSX)
 import Cocoa
+typealias UIViewController = NSViewController
+typealias UIColor = NSColor
+#elseif os(iOS)
+import UIKit
+#endif
 import Foundation
 import Vision
 
 protocol FaceTrackerViewControllerDataSource : AnyObject {
     func visionContentSize() -> CGSize
+    func overlayLayerOrientation() -> CGImagePropertyOrientation
+    func overlayLayerScaleMultipliers() -> CGPoint // multipliers to the scale of the overlay layer
 }
 
-class FaceTrackerViewController : NSViewController
+class FaceTrackerViewController : UIViewController
 {
     weak var datasource : FaceTrackerViewControllerDataSource?
     
@@ -35,7 +42,7 @@ class FaceTrackerViewController : NSViewController
     func drawFace(from imageData: Data) {
         
         let requestHandlerOptions: [VNImageOption: AnyObject] = [:]
-        let exifOrientation = CGImagePropertyOrientation.up
+        let exifOrientation = self.datasource?.overlayLayerOrientation() ?? CGImagePropertyOrientation.up
         
         guard let requests = self.trackingRequests, !requests.isEmpty else {
             // No tracking object detected, so perform initial detection
@@ -198,7 +205,7 @@ class FaceTrackerViewController : NSViewController
         faceRectangleShapeLayer.anchorPoint = normalizedCenterPoint
         faceRectangleShapeLayer.position = captureDeviceBoundsCenterPoint
         faceRectangleShapeLayer.fillColor = nil
-        faceRectangleShapeLayer.strokeColor = NSColor.green.cgColor
+        faceRectangleShapeLayer.strokeColor = UIColor.green.cgColor
         faceRectangleShapeLayer.lineWidth = 1
         
         let faceLandmarksShapeLayer = CAShapeLayer()
@@ -207,7 +214,7 @@ class FaceTrackerViewController : NSViewController
         faceLandmarksShapeLayer.anchorPoint = normalizedCenterPoint
         faceLandmarksShapeLayer.position = captureDeviceBoundsCenterPoint
         faceLandmarksShapeLayer.fillColor = nil
-        faceLandmarksShapeLayer.strokeColor = NSColor.yellow.cgColor
+        faceLandmarksShapeLayer.strokeColor = UIColor.yellow.cgColor
         faceLandmarksShapeLayer.lineWidth = 1
         
         overlayLayer.addSublayer(faceRectangleShapeLayer)
@@ -322,9 +329,10 @@ class FaceTrackerViewController : NSViewController
             let scaleX : CGFloat = videoPreviewSize.width / captureDeviceResolution.width
             let scaleY : CGFloat = videoPreviewSize.height / captureDeviceResolution.height
             
+            let multipliers = self.datasource?.overlayLayerScaleMultipliers() ?? CGPoint(x: 1.0, y: 1.0)
             // Scale and mirror the image to ensure upright presentation.
             let affineTransform = CGAffineTransform(rotationAngle: radiansForDegrees(rotation))
-                .scaledBy(x: scaleX, y: scaleY)
+                .scaledBy(x: multipliers.x * scaleX, y: multipliers.y * scaleY)
             overlayLayer.setAffineTransform(affineTransform)
             
             // Cover entire screen UI.
@@ -335,25 +343,5 @@ class FaceTrackerViewController : NSViewController
     
     fileprivate func radiansForDegrees(_ degrees: CGFloat) -> CGFloat {
         return CGFloat(Double(degrees) * Double.pi / 180.0)
-    }
-}
-
-extension NSImageView {
-    var contentClippingRect: CGRect {
-        guard let image = image else { return bounds }
-        guard image.size.width > 0 && image.size.height > 0 else { return bounds }
-        
-        let scale: CGFloat
-        if image.size.width > image.size.height {
-            scale = bounds.width / image.size.width
-        } else {
-            scale = bounds.height / image.size.height
-        }
-        
-        let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
-        let x = (bounds.width - size.width) / 2.0
-        let y = (bounds.height - size.height) / 2.0
-        
-        return CGRect(x: x, y: y, width: size.width, height: size.height)
     }
 }

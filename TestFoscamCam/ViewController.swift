@@ -79,6 +79,14 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
     func visionContentSize() -> CGSize {
         return imageView?.contentClippingRect.size ?? CGSize()
     }
+    
+    func overlayLayerOrientation() -> CGImagePropertyOrientation {
+        return CGImagePropertyOrientation.upMirrored
+    }
+    
+    func overlayLayerScaleMultipliers() -> CGPoint {
+        return CGPoint(x: -1.0, y: -1.0)
+    }
 }
 
 

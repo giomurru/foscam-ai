@@ -89,6 +89,15 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
         }
         return CGSize()
     }
+    
+    func overlayLayerOrientation() -> CGImagePropertyOrientation {
+        return CGImagePropertyOrientation.up
+    }
+    
+    func overlayLayerScaleMultipliers() -> CGPoint {
+        return CGPoint(x: 1.0, y: 1.0)
+    }
+    
 //
 //    override var representedObject: Any? {
 //        didSet {
