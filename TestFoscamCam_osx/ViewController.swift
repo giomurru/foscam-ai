@@ -8,10 +8,17 @@
 
 import Cocoa
 
-class ViewController: NSViewController, MJPEGLibDelegate {
+class OverlayView: NSView {
+    override func draw(_ dirtyRect: NSRect) {
+        NSColor.clear.set()
+        dirtyRect.fill()
+    }
+}
+
+class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerViewControllerDataSource {
 
     @IBOutlet weak var imageView: NSImageView!
-    
+    var overlayView: OverlayView!
     var cameraController : FoscamControl!;
     
     @IBAction func toggleIR(_ sender: NSButton) {
@@ -45,10 +52,19 @@ class ViewController: NSViewController, MJPEGLibDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.overlayView = OverlayView(frame: self.imageView.bounds)
+        self.overlayView.wantsLayer = true
+        self.imageView.addSubview(self.overlayView)
+        
+        self.datasource = self
+        if let previewRootLayer = self.overlayView?.layer {
+            self.rootLayer = previewRootLayer
+        }
         // Do any additional setup after loading the view.
         // Set the ImageView to the stream object
         cameraController = FoscamControl(with: "192.168.1.112", user: "admin", password: "45gnAX.%2F114", streamDelegate: self)
+        self.captureDeviceResolution = CGSize(width: 640, height: 480)
+        self.prepareVisionRequest()
         cameraController.startStreaming()
     }
     
@@ -62,6 +78,16 @@ class ViewController: NSViewController, MJPEGLibDelegate {
                 self.imageView.image = image
             }
         }
+        drawFace(from: imageData)
+    }
+    
+    // FaceTrackerViewControllerDataSource
+    func visionContentSize() -> CGSize {
+        if let contentRect = self.imageView?.contentClippingRect {
+            self.overlayView.frame = contentRect
+            return contentRect.size
+        }
+        return CGSize()
     }
 //
 //    override var representedObject: Any? {

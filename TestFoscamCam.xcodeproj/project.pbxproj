@@ -20,6 +20,8 @@
 		3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
 		3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
 		3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
+		3FB422E422C4188800BA3B71 /* FaceTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E322C4188800BA3B71 /* FaceTrackerViewController.swift */; };
+		3FB422E722C4F56300BA3B71 /* FaceTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceTrackerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		3F9A7E2422C26CBD00EB2D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGLib.swift; sourceTree = "<group>"; };
 		3FB422E022C3951B00BA3B71 /* FoscamControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoscamControl.swift; sourceTree = "<group>"; };
+		3FB422E322C4188800BA3B71 /* FaceTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackerViewController.swift; sourceTree = "<group>"; };
+		3FB422E622C4F56300BA3B71 /* FaceTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 			children = (
 				3F2253DD22C2D4760092AF77 /* AppDelegate.swift */,
 				3F2253DF22C2D4760092AF77 /* ViewController.swift */,
+				3FB422E622C4F56300BA3B71 /* FaceTrackerViewController.swift */,
 				3F2253E122C2D4760092AF77 /* Assets.xcassets */,
 				3F2253E322C2D4760092AF77 /* Main.storyboard */,
 				3F2253E622C2D4760092AF77 /* Info.plist */,
@@ -96,6 +101,7 @@
 			children = (
 				3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */,
 				3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */,
+				3FB422E322C4188800BA3B71 /* FaceTrackerViewController.swift */,
 				3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */,
 				3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */,
 				3F9A7E2122C26CBD00EB2D15 /* LaunchScreen.storyboard */,
@@ -219,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB422E722C4F56300BA3B71 /* FaceTrackerViewController.swift in Sources */,
 				3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */,
 				3F2253DE22C2D4760092AF77 /* AppDelegate.swift in Sources */,
@@ -232,6 +239,7 @@
 			files = (
 				3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */,
+				3FB422E422C4188800BA3B71 /* FaceTrackerViewController.swift in Sources */,
 				3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
 			);

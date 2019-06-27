@@ -7,7 +7,9 @@
 //
 import UIKit
 
-class ViewController: UIViewController, MJPEGLibDelegate {
+class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerViewControllerDataSource {
+    
+    
     
     // FLAG TO CHANGE PTZ
     //var ptz_type = 0;
@@ -47,21 +49,17 @@ class ViewController: UIViewController, MJPEGLibDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.datasource = self
+        if let previewRootLayer = self.imageView?.layer {
+            self.rootLayer = previewRootLayer
+        }
         loadingIndicator.startAnimating()
         cameraController = FoscamControl(with: "192.168.1.112", user: "admin", password: "45gnAX.%2F114", streamDelegate: self)
+        self.captureDeviceResolution = CGSize(width: 640, height: 480)
+        self.prepareVisionRequest()
         cameraController.startStreaming()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-        //return UIStatusBarStyle.default   // Make dark again
-    }
-    
+
     //MARK: MJPEGLibDelegate methods
     func didStartPlaying() {
         print("did start playing")
@@ -74,7 +72,15 @@ class ViewController: UIViewController, MJPEGLibDelegate {
                 self.imageView.image = image
             }
         }
+        drawFace(from: imageData)
+    }
+    
+    // FaceTrackerViewControllerDataSource
+    func visionContentSize() -> CGSize {
+        return imageView?.contentClippingRect.size ?? CGSize()
     }
 }
+
+
 
 
