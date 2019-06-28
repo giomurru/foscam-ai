@@ -19,7 +19,7 @@ class GenderClassifierController {
     lazy var genderModel = try? VNCoreMLModel(for: GenderNet().model)
     private var genderRequest: [VNCoreMLRequest]?
     
-    var maleConfidence = LowPassFilter(value: 0.5, filterFactor: 0.5)
+    var maleConfidence = LowPassFilter(value: 0.5, filterFactor: 0.7)
     
     weak var delegate : GenderClassifierDelegate?
     
@@ -65,9 +65,9 @@ class GenderClassifierController {
                     }
                 }
                 
-                if self.maleConfidence.value > 0.99 {
+                if self.maleConfidence.value > 0.97 {
                     self.prediction = "Male"
-                } else if self.maleConfidence.value < 0.01 {
+                } else if self.maleConfidence.value < 0.03 {
                     self.prediction = "Female"
                 }
             })
