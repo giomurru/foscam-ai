@@ -16,11 +16,12 @@ class OverlayView: NSView {
     }
 }
 
-class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerViewControllerDataSource {
+class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetectorDataSource, GenderClassifierDelegate {
 
     @IBOutlet weak var imageView: NSImageView!
     var overlayView: OverlayView!
     var cameraController : FoscamControl!
+    var genderClassifier : GenderClassifierController!
     
     @IBAction func toggleIR(_ sender: NSButton) {
         cameraController.toggleIR()
@@ -53,6 +54,10 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.genderClassifier = GenderClassifierController()
+        self.genderClassifier.prepareVisionRequest()
+        self.genderClassifier.delegate = self
+        
         self.overlayView = OverlayView(frame: self.imageView.bounds)
         self.overlayView.wantsLayer = true
         self.imageView.addSubview(self.overlayView)
@@ -81,13 +86,10 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
         }
         trackFace(from: imageData)
         
-        predictGender(from: imageData)
+        genderClassifier.predictGender(from: imageData, detectedFaces: self.detectedFaces, displaySize: self.captureDeviceResolution, exifOrientation: overlayLayerOrientation())
     }
     
-    
-    
-    
-    // FaceTrackerViewControllerDataSource
+    // FaceDetectorDataSource
     func visionContentSize() -> CGSize {
         if let contentRect = self.imageView?.contentClippingRect {
             self.overlayView.frame = contentRect
@@ -104,11 +106,9 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
         return CGPoint(x: 1.0, y: -1.0)
     }
     
-//
-//    override var representedObject: Any? {
-//        didSet {
-//        // Update the view, if already loaded.
-//        }
-//    }
+    // GenderClassifierDelegate
+    func genderDidChange(prediction: String) {
+        print("gender: \(prediction)")
+    }
 }
 

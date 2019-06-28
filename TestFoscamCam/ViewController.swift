@@ -7,9 +7,7 @@
 //
 import UIKit
 
-class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerViewControllerDataSource {
-    
-    
+class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetectorDataSource, GenderClassifierDelegate {
     
     // FLAG TO CHANGE PTZ
     //var ptz_type = 0;
@@ -17,6 +15,7 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var cameraController : FoscamControl!;
+    var genderClassifier : GenderClassifierController!
     
     @IBAction func toggleIR(_ sender: UIButton) {
         cameraController.toggleIR()
@@ -49,6 +48,9 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.genderClassifier = GenderClassifierController()
+        self.genderClassifier.prepareVisionRequest()
+        self.genderClassifier.delegate = self
         self.datasource = self
         if let previewRootLayer = self.imageView?.layer {
             self.rootLayer = previewRootLayer
@@ -73,10 +75,10 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
             }
         }
         trackFace(from: imageData)
-        predictGender(from: imageData)
+        genderClassifier.predictGender(from: imageData, detectedFaces: self.detectedFaces, displaySize: self.captureDeviceResolution, exifOrientation: overlayLayerOrientation())
     }
     
-    // FaceTrackerViewControllerDataSource
+    // FaceDetectorDataSource
     func visionContentSize() -> CGSize {
         return imageView?.contentClippingRect.size ?? CGSize()
     }
@@ -87,6 +89,11 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
     
     func overlayLayerScaleMultipliers() -> CGPoint {
         return CGPoint(x: 1.0, y: 1.0)
+    }
+    
+    // GenderClassifierDelegate
+    func genderDidChange(prediction: String) {
+        print("gender: \(prediction)")
     }
 }
 
