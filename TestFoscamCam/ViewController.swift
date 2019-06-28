@@ -72,7 +72,8 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
                 self.imageView.image = image
             }
         }
-        drawFace(from: imageData)
+        trackFace(from: imageData)
+        predictGender(from: imageData)
     }
     
     // FaceTrackerViewControllerDataSource
@@ -81,11 +82,11 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
     }
     
     func overlayLayerOrientation() -> CGImagePropertyOrientation {
-        return CGImagePropertyOrientation.upMirrored
+        return CGImagePropertyOrientation.up
     }
     
     func overlayLayerScaleMultipliers() -> CGPoint {
-        return CGPoint(x: -1.0, y: -1.0)
+        return CGPoint(x: 1.0, y: 1.0)
     }
 }
 

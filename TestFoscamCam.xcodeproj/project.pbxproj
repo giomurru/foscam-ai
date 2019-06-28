@@ -11,9 +11,12 @@
 		3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2253DF22C2D4760092AF77 /* ViewController.swift */; };
 		3F2253E222C2D4760092AF77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F2253E122C2D4760092AF77 /* Assets.xcassets */; };
 		3F2253E522C2D4760092AF77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F2253E322C2D4760092AF77 /* Main.storyboard */; };
+		3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707422C64C040065502C /* GenderNet.mlmodel */; };
+		3F43707622C64C040065502C /* GenderNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707422C64C040065502C /* GenderNet.mlmodel */; };
 		3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
 		3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
 		3F6D3DA622C518AA00B038A0 /* FaceTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceTrackerViewController.swift */; };
+		3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */; };
 		3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */; };
 		3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */; };
 		3F9A7E1E22C26CBA00EB2D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */; };
@@ -34,7 +37,9 @@
 		3F2253E422C2D4760092AF77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F2253E622C2D4760092AF77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2253E722C2D4760092AF77 /* TestFoscamCam_osx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestFoscamCam_osx.entitlements; sourceTree = "<group>"; };
+		3F43707422C64C040065502C /* GenderNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GenderNet.mlmodel; sourceTree = "<group>"; };
 		3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
+		3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageViewExtension.swift; sourceTree = "<group>"; };
 		3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFoscamCam_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 		3F2253DC22C2D4760092AF77 /* TestFoscamCam_osx */ = {
 			isa = PBXGroup;
 			children = (
+				3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */,
 				3F2253DD22C2D4760092AF77 /* AppDelegate.swift */,
 				3F2253DF22C2D4760092AF77 /* ViewController.swift */,
 				3F2253E122C2D4760092AF77 /* Assets.xcassets */,
@@ -78,9 +84,18 @@
 			path = TestFoscamCam_osx;
 			sourceTree = "<group>";
 		};
+		3F43707322C64C040065502C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F43707422C64C040065502C /* GenderNet.mlmodel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3F9A7E0C22C26CBA00EB2D15 = {
 			isa = PBXGroup;
 			children = (
+				3F43707322C64C040065502C /* Models */,
 				3FB422DE22C36A4C00BA3B71 /* UniversalLibs */,
 				3F9A7E1722C26CBA00EB2D15 /* TestFoscamCam */,
 				3F2253DC22C2D4760092AF77 /* TestFoscamCam_osx */,
@@ -172,7 +187,7 @@
 						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -228,9 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FB422E722C4F56300BA3B71 /* FaceTrackerViewController.swift in Sources */,
+				3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */,
 				3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */,
+				3F43707622C64C040065502C /* GenderNet.mlmodel in Sources */,
 				3F2253DE22C2D4760092AF77 /* AppDelegate.swift in Sources */,
 				3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */,
 			);
@@ -244,6 +261,7 @@
 				3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */,
 				3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */,
+				3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
 				3F6D3DA622C518AA00B038A0 /* FaceTrackerViewController.swift in Sources */,
 			);
@@ -283,7 +301,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TestFoscamCam_osx/TestFoscamCam_osx.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -305,7 +322,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TestFoscamCam_osx/TestFoscamCam_osx.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

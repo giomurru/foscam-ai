@@ -7,7 +7,8 @@
 //
 
 import Cocoa
-
+import CoreML
+import Vision
 class OverlayView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         NSColor.clear.set()
@@ -19,7 +20,7 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
 
     @IBOutlet weak var imageView: NSImageView!
     var overlayView: OverlayView!
-    var cameraController : FoscamControl!;
+    var cameraController : FoscamControl!
     
     @IBAction func toggleIR(_ sender: NSButton) {
         cameraController.toggleIR()
@@ -78,8 +79,13 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
                 self.imageView.image = image
             }
         }
-        drawFace(from: imageData)
+        trackFace(from: imageData)
+        
+        predictGender(from: imageData)
     }
+    
+    
+    
     
     // FaceTrackerViewControllerDataSource
     func visionContentSize() -> CGSize {
@@ -95,7 +101,7 @@ class ViewController: FaceTrackerViewController, MJPEGLibDelegate, FaceTrackerVi
     }
     
     func overlayLayerScaleMultipliers() -> CGPoint {
-        return CGPoint(x: 1.0, y: 1.0)
+        return CGPoint(x: 1.0, y: -1.0)
     }
     
 //

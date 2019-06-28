@@ -9,6 +9,7 @@
 import Cocoa
 typealias UIViewController = NSViewController
 typealias UIColor = NSColor
+typealias UIImage = NSImage
 #elseif os(iOS)
 import UIKit
 #endif
@@ -26,116 +27,45 @@ class FaceTrackerViewController : UIViewController
     weak var datasource : FaceTrackerViewControllerDataSource?
     
     var captureDeviceResolution: CGSize = CGSize()
-    
+    lazy var genderModel = try? VNCoreMLModel(for: GenderNet().model)
     // Layer UI for drawing Vision results
     var rootLayer: CALayer?
     var detectionOverlayLayer: CALayer?
     var detectedFaceRectangleShapeLayer: CAShapeLayer?
-    var detectedFaceLandmarksShapeLayer: CAShapeLayer?
     
+    var detectedFaces = [VNFaceObservation]()
     // Vision requests
     private var detectionRequests: [VNDetectFaceRectanglesRequest]?
-    private var trackingRequests: [VNTrackObjectRequest]?
+    private var genderRequest: [VNCoreMLRequest]?
     
-    lazy var sequenceRequestHandler = VNSequenceRequestHandler()
-    
-    func drawFace(from imageData: Data) {
-        
+    func trackFace(from imageData: Data) {
         let requestHandlerOptions: [VNImageOption: AnyObject] = [:]
         let exifOrientation = self.datasource?.overlayLayerOrientation() ?? CGImagePropertyOrientation.up
-        
-        guard let requests = self.trackingRequests, !requests.isEmpty else {
-            // No tracking object detected, so perform initial detection
-            
-            let imageRequestHandler = VNImageRequestHandler(data: imageData, orientation: exifOrientation, options: requestHandlerOptions)
-            
-            do {
-                guard let detectRequests = self.detectionRequests else {
-                    return
-                }
-                try imageRequestHandler.perform(detectRequests)
-            } catch let error as NSError {
-                NSLog("Failed to perform FaceRectangleRequest: %@", error)
-            }
-            return
-        }
-        
+        let imageRequestHandler = VNImageRequestHandler(data: imageData, orientation: exifOrientation, options: requestHandlerOptions)
         do {
-            try self.sequenceRequestHandler.perform(requests, onImageData: imageData, orientation: exifOrientation)
-        } catch let error as NSError {
-            NSLog("Failed to perform SequenceRequest: %@", error)
-        }
-        
-        // Setup the next round of tracking.
-        var newTrackingRequests = [VNTrackObjectRequest]()
-        for trackingRequest in requests {
-            
-            guard let results = trackingRequest.results else {
+            guard let detectRequests = self.detectionRequests else {
                 return
             }
-            
-            guard let observation = results[0] as? VNDetectedObjectObservation else {
-                return
-            }
-            
-            if !trackingRequest.isLastFrame {
-                if observation.confidence > 0.3 {
-                    trackingRequest.inputObservation = observation
-                } else {
-                    trackingRequest.isLastFrame = true
-                }
-                newTrackingRequests.append(trackingRequest)
-            }
+            try imageRequestHandler.perform(detectRequests)
+        } catch let error {
+            print("Failed to perform FaceRectangleRequest: \(error.localizedDescription)")
         }
-        self.trackingRequests = newTrackingRequests
-        
-        if newTrackingRequests.isEmpty {
-            // Nothing to track, so abort.
-            return
-        }
-        
-        // Perform face landmark tracking on detected faces.
-        var faceLandmarkRequests = [VNDetectFaceLandmarksRequest]()
-        
-        // Perform landmark detection on tracked faces.
-        for trackingRequest in newTrackingRequests {
-            
-            let faceLandmarksRequest = VNDetectFaceLandmarksRequest(completionHandler: { (request, error) in
-                
-                if error != nil {
-                    print("FaceLandmarks error: \(String(describing: error)).")
-                }
-                
-                guard let landmarksRequest = request as? VNDetectFaceLandmarksRequest,
-                    let results = landmarksRequest.results as? [VNFaceObservation] else {
+    }
+    
+    func predictGender(from imageData: Data) {
+        let requestHandlerOptions: [VNImageOption: AnyObject] = [:]
+        let exifOrientation = self.datasource?.overlayLayerOrientation() ?? CGImagePropertyOrientation.up
+        if self.detectedFaces.count > 0 {
+            for croppedFace in self.croppedFaces(from: imageData, using: self.detectedFaces) {
+                let genderRequestHandler = VNImageRequestHandler(cgImage: croppedFace, orientation: exifOrientation, options: requestHandlerOptions)
+                do {
+                    guard let genderRequests = self.genderRequest else {
                         return
+                    }
+                    try genderRequestHandler.perform(genderRequests)
+                } catch let error {
+                    print("Failed to perform GenderRequest: \(error.localizedDescription)")
                 }
-                
-                // Perform all UI updates (drawing) on the main queue, not the background queue on which this handler is being called.
-                DispatchQueue.main.async {
-                    self.drawFaceObservations(results)
-                }
-            })
-            
-            guard let trackingResults = trackingRequest.results else {
-                return
-            }
-            
-            guard let observation = trackingResults[0] as? VNDetectedObjectObservation else {
-                return
-            }
-            let faceObservation = VNFaceObservation(boundingBox: observation.boundingBox)
-            faceLandmarksRequest.inputFaceObservations = [faceObservation]
-            
-            // Continue to track detected facial landmarks.
-            faceLandmarkRequests.append(faceLandmarksRequest)
-            
-            let imageRequestHandler = VNImageRequestHandler(data: imageData, orientation: exifOrientation, options: requestHandlerOptions)
-            
-            do {
-                try imageRequestHandler.perform(faceLandmarkRequests)
-            } catch let error as NSError {
-                NSLog("Failed to perform FaceLandmarkRequest: %@", error)
             }
         }
     }
@@ -143,33 +73,43 @@ class FaceTrackerViewController : UIViewController
     //Vision
     func prepareVisionRequest() {
         
-        //self.trackingRequests = []
-        var requests = [VNTrackObjectRequest]()
-        
         let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in
             
             if error != nil {
                 print("FaceDetection error: \(String(describing: error)).")
             }
-            
+
             guard let faceDetectionRequest = request as? VNDetectFaceRectanglesRequest,
                 let results = faceDetectionRequest.results as? [VNFaceObservation] else {
                     return
             }
+            
+            self.detectedFaces = results
+            
             DispatchQueue.main.async {
-                // Add the observations to the tracking list
-                for observation in results {
-                    let faceTrackingRequest = VNTrackObjectRequest(detectedObjectObservation: observation)
-                    requests.append(faceTrackingRequest)
-                }
-                self.trackingRequests = requests
+                self.drawFaceObservations(results)
             }
         })
         
+        if let gm = self.genderModel {
+            let genderRequest = VNCoreMLRequest(model: gm, completionHandler: { (request, error) in
+                guard let results = request.results as? [VNClassificationObservation] else {
+                    return
+                }
+                var predictedClass = (identifier: "", confidence: VNConfidence(0.0))
+                for classification in results {
+                    if classification.confidence > predictedClass.confidence {
+                        predictedClass.identifier = classification.identifier
+                        predictedClass.confidence = classification.confidence
+                    }
+                }
+                print("\(predictedClass.identifier): \(predictedClass.confidence)")
+            })
+            self.genderRequest = [genderRequest]
+        }
+        
         // Start with detection.  Find face, then track it.
         self.detectionRequests = [faceDetectionRequest]
-        
-        self.sequenceRequestHandler = VNSequenceRequestHandler()
         
         self.setupVisionDrawingLayers()
     }
@@ -208,82 +148,42 @@ class FaceTrackerViewController : UIViewController
         faceRectangleShapeLayer.strokeColor = UIColor.green.cgColor
         faceRectangleShapeLayer.lineWidth = 1
         
-        let faceLandmarksShapeLayer = CAShapeLayer()
-        faceLandmarksShapeLayer.name = "FaceLandmarksLayer"
-        faceLandmarksShapeLayer.bounds = captureDeviceBounds
-        faceLandmarksShapeLayer.anchorPoint = normalizedCenterPoint
-        faceLandmarksShapeLayer.position = captureDeviceBoundsCenterPoint
-        faceLandmarksShapeLayer.fillColor = nil
-        faceLandmarksShapeLayer.strokeColor = UIColor.yellow.cgColor
-        faceLandmarksShapeLayer.lineWidth = 1
-        
         overlayLayer.addSublayer(faceRectangleShapeLayer)
-        overlayLayer.addSublayer(faceLandmarksShapeLayer)
         rootLayer.addSublayer(overlayLayer)
         
         self.detectionOverlayLayer = overlayLayer
         self.detectedFaceRectangleShapeLayer = faceRectangleShapeLayer
-        self.detectedFaceLandmarksShapeLayer = faceLandmarksShapeLayer
         
         self.updateLayerGeometry()
         
     }
     
-    
-    fileprivate func addPoints(in landmarkRegion: VNFaceLandmarkRegion2D, to path: CGMutablePath, applying affineTransform: CGAffineTransform, closingWhenComplete closePath: Bool) {
-        let pointCount = landmarkRegion.pointCount
-        if pointCount > 1 {
-            let points: [CGPoint] = landmarkRegion.normalizedPoints
-            path.move(to: points[0], transform: affineTransform)
-            path.addLines(between: points, transform: affineTransform)
-            if closePath {
-                path.addLine(to: points[0], transform: affineTransform)
-                path.closeSubpath()
+    fileprivate func croppedFaces(from imageData: Data, using faceObservations: [VNFaceObservation]) -> [CGImage]{
+        var crops = [CGImage]()
+        if let cameraImage = UIImage(data: imageData)?.cgImage {
+            for observation in faceObservations {
+                let bbox = self.faceBounds(from: observation.boundingBox)
+                if let face = cameraImage.cropping(to: bbox) {
+                    crops.append(face)
+                }
             }
         }
+        return crops
     }
     
-    fileprivate func addIndicators(to faceRectanglePath: CGMutablePath, faceLandmarksPath: CGMutablePath, for faceObservation: VNFaceObservation) {
+    fileprivate func faceBounds(from boundingBox: CGRect) -> CGRect {
         let displaySize = self.captureDeviceResolution
-        
-        let faceBounds = VNImageRectForNormalizedRect(faceObservation.boundingBox, Int(displaySize.width), Int(displaySize.height))
+        let bbox = VNImageRectForNormalizedRect(boundingBox, Int(displaySize.width), Int(displaySize.height))
+        return CGRect(x: bbox.origin.x, y: displaySize.height - bbox.height - bbox.origin.y, width: bbox.width, height: bbox.height)
+    }
+    fileprivate func addBoundingBox(to faceRectanglePath: CGMutablePath, for faceObservation: VNFaceObservation) {
+        let faceBounds = self.faceBounds(from: faceObservation.boundingBox)
         faceRectanglePath.addRect(faceBounds)
-        
-        if let landmarks = faceObservation.landmarks {
-            // Landmarks are relative to -- and normalized within --- face bounds
-            let affineTransform = CGAffineTransform(translationX: faceBounds.origin.x, y: faceBounds.origin.y)
-                .scaledBy(x: faceBounds.size.width, y: faceBounds.size.height)
-            
-            // Treat eyebrows and lines as open-ended regions when drawing paths.
-            let openLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
-                landmarks.leftEyebrow,
-                landmarks.rightEyebrow,
-                landmarks.faceContour,
-                landmarks.noseCrest,
-                landmarks.medianLine
-            ]
-            for openLandmarkRegion in openLandmarkRegions where openLandmarkRegion != nil {
-                self.addPoints(in: openLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: false)
-            }
-            
-            // Draw eyes, lips, and nose as closed regions.
-            let closedLandmarkRegions: [VNFaceLandmarkRegion2D?] = [
-                landmarks.leftEye,
-                landmarks.rightEye,
-                landmarks.outerLips,
-                landmarks.innerLips,
-                landmarks.nose
-            ]
-            for closedLandmarkRegion in closedLandmarkRegions where closedLandmarkRegion != nil {
-                self.addPoints(in: closedLandmarkRegion!, to: faceLandmarksPath, applying: affineTransform, closingWhenComplete: true)
-            }
-        }
     }
     
     /// - Tag: DrawPaths
     fileprivate func drawFaceObservations(_ faceObservations: [VNFaceObservation]) {
-        guard let faceRectangleShapeLayer = self.detectedFaceRectangleShapeLayer,
-            let faceLandmarksShapeLayer = self.detectedFaceLandmarksShapeLayer
+        guard let faceRectangleShapeLayer = self.detectedFaceRectangleShapeLayer
             else {
                 return
         }
@@ -293,16 +193,12 @@ class FaceTrackerViewController : UIViewController
         CATransaction.setValue(NSNumber(value: true), forKey: kCATransactionDisableActions)
         
         let faceRectanglePath = CGMutablePath()
-        let faceLandmarksPath = CGMutablePath()
         
         for faceObservation in faceObservations {
-            self.addIndicators(to: faceRectanglePath,
-                               faceLandmarksPath: faceLandmarksPath,
-                               for: faceObservation)
+            self.addBoundingBox(to: faceRectanglePath, for: faceObservation)
         }
         
         faceRectangleShapeLayer.path = faceRectanglePath
-        faceLandmarksShapeLayer.path = faceLandmarksPath
         
         self.updateLayerGeometry()
         
