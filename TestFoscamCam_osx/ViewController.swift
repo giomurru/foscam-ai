@@ -68,7 +68,7 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
         }
         // Do any additional setup after loading the view.
         // Set the ImageView to the stream object
-        cameraController = FoscamControl(with: "192.168.1.112", user: "admin", password: "45gnAX.%2F114", streamDelegate: self)
+        cameraController = FoscamControl(with: "192.168.1.104", user: "admin", password: "45gnAX.%2F114", streamDelegate: self)
         self.captureDeviceResolution = CGSize(width: 640, height: 480)
         self.prepareVisionRequest()
         cameraController.startStreaming()

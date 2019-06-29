@@ -83,3 +83,4 @@ iOSInjectionProject/
 
 # Custom folders
 *.mlmodel
+LoginConstants.swift

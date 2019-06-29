@@ -19,6 +19,8 @@
 		3F43707C22C65B960065502C /* VisionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707A22C65B960065502C /* VisionUtils.swift */; };
 		3F43707E22C6679F0065502C /* LowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707D22C6679F0065502C /* LowPassFilter.swift */; };
 		3F43707F22C6679F0065502C /* LowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707D22C6679F0065502C /* LowPassFilter.swift */; };
+		3F47E1D922C7A49F00BA3AC7 /* LoginConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */; };
+		3F47E1DA22C7A49F00BA3AC7 /* LoginConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */; };
 		3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
 		3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
 		3F6D3DA622C518AA00B038A0 /* FaceDetectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetectorViewController.swift */; };
@@ -47,6 +49,7 @@
 		3F43707722C65A2E0065502C /* GenderClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderClassifier.swift; sourceTree = "<group>"; };
 		3F43707A22C65B960065502C /* VisionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionUtils.swift; sourceTree = "<group>"; };
 		3F43707D22C6679F0065502C /* LowPassFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPassFilter.swift; sourceTree = "<group>"; };
+		3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConstants.swift; sourceTree = "<group>"; };
 		3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageViewExtension.swift; sourceTree = "<group>"; };
 		3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFoscamCam_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +140,7 @@
 		3FB422DE22C36A4C00BA3B71 /* UniversalLibs */ = {
 			isa = PBXGroup;
 			children = (
+				3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */,
 				3FB422E622C4F56300BA3B71 /* FaceDetectorViewController.swift */,
 				3F43707A22C65B960065502C /* VisionUtils.swift */,
 				3F43707D22C6679F0065502C /* LowPassFilter.swift */,
@@ -263,6 +267,7 @@
 				3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */,
 				3F43707622C64C040065502C /* GenderNet.mlmodel in Sources */,
 				3F2253DE22C2D4760092AF77 /* AppDelegate.swift in Sources */,
+				3F47E1DA22C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
 				3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */,
 				3F43707F22C6679F0065502C /* LowPassFilter.swift in Sources */,
 			);
@@ -280,6 +285,7 @@
 				3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */,
 				3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */,
 				3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */,
+				3F47E1D922C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
 				3F6D3DA622C518AA00B038A0 /* FaceDetectorViewController.swift in Sources */,
 			);
