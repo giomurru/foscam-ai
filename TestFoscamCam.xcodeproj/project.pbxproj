@@ -13,8 +13,8 @@
 		3F2253E522C2D4760092AF77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F2253E322C2D4760092AF77 /* Main.storyboard */; };
 		3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707422C64C040065502C /* GenderNet.mlmodel */; };
 		3F43707622C64C040065502C /* GenderNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707422C64C040065502C /* GenderNet.mlmodel */; };
-		3F43707822C65A2E0065502C /* GenderClassifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707722C65A2E0065502C /* GenderClassifierController.swift */; };
-		3F43707922C65A2E0065502C /* GenderClassifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707722C65A2E0065502C /* GenderClassifierController.swift */; };
+		3F43707822C65A2E0065502C /* GenderClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707722C65A2E0065502C /* GenderClassifier.swift */; };
+		3F43707922C65A2E0065502C /* GenderClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707722C65A2E0065502C /* GenderClassifier.swift */; };
 		3F43707B22C65B960065502C /* VisionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707A22C65B960065502C /* VisionUtils.swift */; };
 		3F43707C22C65B960065502C /* VisionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707A22C65B960065502C /* VisionUtils.swift */; };
 		3F43707E22C6679F0065502C /* LowPassFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43707D22C6679F0065502C /* LowPassFilter.swift */; };
@@ -44,7 +44,7 @@
 		3F2253E622C2D4760092AF77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2253E722C2D4760092AF77 /* TestFoscamCam_osx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestFoscamCam_osx.entitlements; sourceTree = "<group>"; };
 		3F43707422C64C040065502C /* GenderNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GenderNet.mlmodel; sourceTree = "<group>"; };
-		3F43707722C65A2E0065502C /* GenderClassifierController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderClassifierController.swift; sourceTree = "<group>"; };
+		3F43707722C65A2E0065502C /* GenderClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderClassifier.swift; sourceTree = "<group>"; };
 		3F43707A22C65B960065502C /* VisionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionUtils.swift; sourceTree = "<group>"; };
 		3F43707D22C6679F0065502C /* LowPassFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPassFilter.swift; sourceTree = "<group>"; };
 		3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				3FB422E622C4F56300BA3B71 /* FaceDetectorViewController.swift */,
 				3F43707A22C65B960065502C /* VisionUtils.swift */,
 				3F43707D22C6679F0065502C /* LowPassFilter.swift */,
-				3F43707722C65A2E0065502C /* GenderClassifierController.swift */,
+				3F43707722C65A2E0065502C /* GenderClassifier.swift */,
 				3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */,
 				3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */,
 				3FB422E022C3951B00BA3B71 /* FoscamControl.swift */,
@@ -254,7 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F43707922C65A2E0065502C /* GenderClassifierController.swift in Sources */,
+				3F43707922C65A2E0065502C /* GenderClassifier.swift in Sources */,
 				3F43707C22C65B960065502C /* VisionUtils.swift in Sources */,
 				3FB422E722C4F56300BA3B71 /* FaceDetectorViewController.swift in Sources */,
 				3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */,
@@ -276,7 +276,7 @@
 				3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3F43707B22C65B960065502C /* VisionUtils.swift in Sources */,
 				3F43707E22C6679F0065502C /* LowPassFilter.swift in Sources */,
-				3F43707822C65A2E0065502C /* GenderClassifierController.swift in Sources */,
+				3F43707822C65A2E0065502C /* GenderClassifier.swift in Sources */,
 				3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */,
 				3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */,
 				3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */,

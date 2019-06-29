@@ -14,7 +14,7 @@ protocol GenderClassifierDelegate : AnyObject {
     func genderDidChange(prediction: String)
 }
 
-class GenderClassifierController {
+class GenderClassifier {
     
     lazy var genderModel = try? VNCoreMLModel(for: GenderNet().model)
     private var genderRequest: [VNCoreMLRequest]?

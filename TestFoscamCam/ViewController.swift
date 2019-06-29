@@ -15,7 +15,7 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var cameraController : FoscamControl!;
-    var genderClassifier : GenderClassifierController!
+    var genderClassifier : GenderClassifier!
     
     @IBAction func toggleIR(_ sender: UIButton) {
         cameraController.toggleIR()
@@ -48,7 +48,7 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.genderClassifier = GenderClassifierController()
+        self.genderClassifier = GenderClassifier()
         self.genderClassifier.prepareVisionRequest()
         self.genderClassifier.delegate = self
         self.datasource = self
