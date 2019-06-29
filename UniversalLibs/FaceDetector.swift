@@ -121,7 +121,7 @@ class FaceDetector
     }
     
     fileprivate func addBoundingBox(to faceRectanglePath: CGMutablePath, for faceObservation: VNFaceObservation) {
-        let faceBounds = VisionUtils.faceBounds(from: faceObservation.boundingBox, displaySize: self.captureDeviceResolution)
+        let faceBounds = VisionUtils.faceBounds(from: faceObservation.boundingBox, imageSize: self.captureDeviceResolution)
         faceRectanglePath.addRect(faceBounds)
     }
     

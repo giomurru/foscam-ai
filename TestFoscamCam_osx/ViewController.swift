@@ -78,10 +78,6 @@ class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource
         self.faceDetector = FaceDetector()
         self.faceDetector.datasource = self
         
-        self.genderClassifier = GenderClassifier()
-        self.genderClassifier.prepareVisionRequest()
-        self.genderClassifier.delegate = self
-        
         self.overlayView = OverlayView(frame: self.imageView.bounds)
         self.overlayView.wantsLayer = true
         self.imageView.addSubview(self.overlayView)
@@ -116,7 +112,22 @@ class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource
         }
         faceDetector.trackFace(from: imageData)
         
-        genderClassifier.predictGender(from: imageData, detectedFaces: faceDetector.detectedFaces, displaySize: faceDetector.captureDeviceResolution, exifOrientation: overlayLayerOrientation())
+        if let classifier = genderClassifier {
+            classifier.predictGender(from: imageData, detectedFaces: faceDetector.detectedFaces)
+        } else {
+            DispatchQueue.main.async {
+                if let imageRect = self.imageView?.contentClippingRect {
+                    self.overlayView.frame = imageRect
+                }
+            }
+            self.initGenderClassifier()
+        }
+    }
+    
+    func initGenderClassifier() {
+        self.genderClassifier = GenderClassifier(labels: ["Male", "Female"], changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.97, imageSize: self.faceDetector.captureDeviceResolution, imageOrientation: .up)
+        self.genderClassifier.prepareVisionRequest()
+        self.genderClassifier.delegate = self
     }
     
     // FaceDetectorDataSource
