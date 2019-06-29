@@ -19,7 +19,7 @@ protocol FaceDetectorDataSource : AnyObject {
     func overlayLayerScaleMultipliers() -> CGPoint // multipliers to the scale of the overlay layer
 }
 
-class FaceDetectorViewController : UIViewController
+class FaceDetector
 {
     weak var datasource : FaceDetectorDataSource?
     

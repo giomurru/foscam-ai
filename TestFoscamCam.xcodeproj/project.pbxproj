@@ -23,7 +23,7 @@
 		3F47E1DA22C7A49F00BA3AC7 /* LoginConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */; };
 		3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
 		3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
-		3F6D3DA622C518AA00B038A0 /* FaceDetectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetectorViewController.swift */; };
+		3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetector.swift */; };
 		3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */; };
 		3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */; };
 		3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */; };
@@ -31,10 +31,12 @@
 		3F9A7E2022C26CBD00EB2D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */; };
 		3F9A7E2322C26CBD00EB2D15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2122C26CBD00EB2D15 /* LaunchScreen.storyboard */; };
 		3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
+		3FAC4D0122C7BF2100BF2F3E /* VisionInputInformationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0022C7BF2100BF2F3E /* VisionInputInformationProvider.swift */; };
+		3FAC4D0222C7BF2100BF2F3E /* VisionInputInformationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0022C7BF2100BF2F3E /* VisionInputInformationProvider.swift */; };
 		3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
 		3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
 		3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
-		3FB422E722C4F56300BA3B71 /* FaceDetectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetectorViewController.swift */; };
+		3FB422E722C4F56300BA3B71 /* FaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,8 +62,9 @@
 		3F9A7E2222C26CBD00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F9A7E2422C26CBD00EB2D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGLib.swift; sourceTree = "<group>"; };
+		3FAC4D0022C7BF2100BF2F3E /* VisionInputInformationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionInputInformationProvider.swift; sourceTree = "<group>"; };
 		3FB422E022C3951B00BA3B71 /* FoscamControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoscamControl.swift; sourceTree = "<group>"; };
-		3FB422E622C4F56300BA3B71 /* FaceDetectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectorViewController.swift; sourceTree = "<group>"; };
+		3FB422E622C4F56300BA3B71 /* FaceDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,10 +144,11 @@
 			isa = PBXGroup;
 			children = (
 				3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */,
-				3FB422E622C4F56300BA3B71 /* FaceDetectorViewController.swift */,
+				3FB422E622C4F56300BA3B71 /* FaceDetector.swift */,
 				3F43707A22C65B960065502C /* VisionUtils.swift */,
 				3F43707D22C6679F0065502C /* LowPassFilter.swift */,
 				3F43707722C65A2E0065502C /* GenderClassifier.swift */,
+				3FAC4D0022C7BF2100BF2F3E /* VisionInputInformationProvider.swift */,
 				3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */,
 				3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */,
 				3FB422E022C3951B00BA3B71 /* FoscamControl.swift */,
@@ -260,7 +264,8 @@
 			files = (
 				3F43707922C65A2E0065502C /* GenderClassifier.swift in Sources */,
 				3F43707C22C65B960065502C /* VisionUtils.swift in Sources */,
-				3FB422E722C4F56300BA3B71 /* FaceDetectorViewController.swift in Sources */,
+				3FAC4D0222C7BF2100BF2F3E /* VisionInputInformationProvider.swift in Sources */,
+				3FB422E722C4F56300BA3B71 /* FaceDetector.swift in Sources */,
 				3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */,
 				3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */,
@@ -277,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAC4D0122C7BF2100BF2F3E /* VisionInputInformationProvider.swift in Sources */,
 				3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3F43707B22C65B960065502C /* VisionUtils.swift in Sources */,
@@ -287,7 +293,7 @@
 				3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */,
 				3F47E1D922C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
-				3F6D3DA622C518AA00B038A0 /* FaceDetectorViewController.swift in Sources */,
+				3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

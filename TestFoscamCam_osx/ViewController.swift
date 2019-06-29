@@ -16,12 +16,13 @@ class OverlayView: NSView {
     }
 }
 
-class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetectorDataSource, GenderClassifierDelegate {
+class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource, GenderClassifierDelegate {
 
     @IBOutlet weak var imageView: NSImageView!
     var overlayView: OverlayView!
     var cameraController : FoscamControl!
     var genderClassifier : GenderClassifier!
+    var faceDetector : FaceDetector!
     
     @IBAction func toggleIR(_ sender: NSButton) {
         cameraController.toggleIR()
@@ -74,6 +75,9 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.faceDetector = FaceDetector()
+        self.faceDetector.datasource = self
+        
         self.genderClassifier = GenderClassifier()
         self.genderClassifier.prepareVisionRequest()
         self.genderClassifier.delegate = self
@@ -82,9 +86,8 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
         self.overlayView.wantsLayer = true
         self.imageView.addSubview(self.overlayView)
         
-        self.datasource = self
         if let previewRootLayer = self.overlayView?.layer {
-            self.rootLayer = previewRootLayer
+            self.faceDetector.rootLayer = previewRootLayer
         }
         // Do any additional setup after loading the view.
         // Set the ImageView to the stream object
@@ -96,8 +99,8 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
 //            static let pwd = "password"
 //        }
         cameraController = FoscamControl(with: LoginConstants.domain, user: LoginConstants.user, password: LoginConstants.pwd, streamDelegate: self)
-        self.captureDeviceResolution = CGSize(width: 640, height: 480)
-        self.prepareVisionRequest()
+        self.faceDetector.captureDeviceResolution = CGSize(width: 640, height: 480)
+        self.faceDetector.prepareVisionRequest()
         cameraController.startStreaming()
     }
     
@@ -111,9 +114,9 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
                 self.imageView.image = image
             }
         }
-        trackFace(from: imageData)
+        faceDetector.trackFace(from: imageData)
         
-        genderClassifier.predictGender(from: imageData, detectedFaces: self.detectedFaces, displaySize: self.captureDeviceResolution, exifOrientation: overlayLayerOrientation())
+        genderClassifier.predictGender(from: imageData, detectedFaces: faceDetector.detectedFaces, displaySize: faceDetector.captureDeviceResolution, exifOrientation: overlayLayerOrientation())
     }
     
     // FaceDetectorDataSource
