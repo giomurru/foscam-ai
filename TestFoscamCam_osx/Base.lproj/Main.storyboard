@@ -729,16 +729,51 @@
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfi-Jf-ZMy">
                                                         <rect key="frame" x="0.0" y="61" width="134" height="129"/>
                                                         <subviews>
-                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3lf-WI-tPt">
-                                                                <rect key="frame" x="0.0" y="43" width="38" height="43"/>
-                                                                <buttonCell key="cell" type="bevel" title="⬅️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Inj-h3-O5H">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" size="30" name=".AppleColorEmojiUI"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="moveCameraLeft:" target="XfG-lQ-9wD" id="7SM-cS-ATU"/>
-                                                                </connections>
-                                                            </button>
+                                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C9k-Nl-IjO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="38" height="129"/>
+                                                                <subviews>
+                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iG3-d3-ZT1">
+                                                                        <rect key="frame" x="0.0" y="86" width="38" height="43"/>
+                                                                        <buttonCell key="cell" type="bevel" title="↖️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="m75-2k-bt5">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" size="30" name=".AppleColorEmojiUI"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="moveCameraLeftUp:" target="XfG-lQ-9wD" id="wcm-Zw-WLr"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3lf-WI-tPt">
+                                                                        <rect key="frame" x="0.0" y="43" width="38" height="43"/>
+                                                                        <buttonCell key="cell" type="bevel" title="⬅️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Inj-h3-O5H">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" size="30" name=".AppleColorEmojiUI"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="moveCameraLeft:" target="XfG-lQ-9wD" id="7SM-cS-ATU"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fKq-ZZ-b9e">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="43"/>
+                                                                        <buttonCell key="cell" type="bevel" title="↙️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="mJt-2b-fxn">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" size="30" name=".AppleColorEmojiUI"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="moveCameraLeftDownWith_sender:" target="XfG-lQ-9wD" id="U1Q-yb-xxi"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <visibilityPriorities>
+                                                                    <integer value="1000"/>
+                                                                    <integer value="1000"/>
+                                                                    <integer value="1000"/>
+                                                                </visibilityPriorities>
+                                                                <customSpacing>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                </customSpacing>
+                                                            </stackView>
                                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4I-lx-C9e">
                                                                 <rect key="frame" x="48" y="0.0" width="38" height="129"/>
                                                                 <subviews>
@@ -784,16 +819,51 @@
                                                                     <real value="3.4028234663852886e+38"/>
                                                                 </customSpacing>
                                                             </stackView>
-                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-oI-exd">
-                                                                <rect key="frame" x="96" y="43" width="38" height="43"/>
-                                                                <buttonCell key="cell" type="bevel" title="➡️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="jdl-GZ-wu0">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" size="30" name=".AppleColorEmojiUI"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="moveCameraRight:" target="XfG-lQ-9wD" id="Y2S-vX-lc2"/>
-                                                                </connections>
-                                                            </button>
+                                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKA-W4-PIw">
+                                                                <rect key="frame" x="96" y="0.0" width="38" height="129"/>
+                                                                <subviews>
+                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xau-bX-9Ub">
+                                                                        <rect key="frame" x="0.0" y="86" width="38" height="43"/>
+                                                                        <buttonCell key="cell" type="bevel" title="↗️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="rri-AW-T3R">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" size="30" name=".AppleColorEmojiUI"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="moveCameraRightUp:" target="XfG-lQ-9wD" id="9YG-MW-v3e"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-oI-exd">
+                                                                        <rect key="frame" x="0.0" y="43" width="38" height="43"/>
+                                                                        <buttonCell key="cell" type="bevel" title="➡️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="jdl-GZ-wu0">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" size="30" name=".AppleColorEmojiUI"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="moveCameraRight:" target="XfG-lQ-9wD" id="Y2S-vX-lc2"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jJ6-P8-8Dv">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="43"/>
+                                                                        <buttonCell key="cell" type="bevel" title="↘️" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="BQr-7A-Jdx">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" size="30" name=".AppleColorEmojiUI"/>
+                                                                        </buttonCell>
+                                                                        <connections>
+                                                                            <action selector="moveCameraRightDown:" target="XfG-lQ-9wD" id="PaR-xi-pgs"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <visibilityPriorities>
+                                                                    <integer value="1000"/>
+                                                                    <integer value="1000"/>
+                                                                    <integer value="1000"/>
+                                                                </visibilityPriorities>
+                                                                <customSpacing>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                </customSpacing>
+                                                            </stackView>
                                                         </subviews>
                                                         <visibilityPriorities>
                                                             <integer value="1000"/>

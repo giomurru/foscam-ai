@@ -28,38 +28,69 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="imw-NL-b0d">
                                 <rect key="frame" x="0.0" y="662" width="414" height="200"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="xbB-YB-kHO">
-                                        <rect key="frame" x="47" y="50" width="320" height="100"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xbB-YB-kHO">
+                                        <rect key="frame" x="67" y="2.5" width="280" height="195"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dh-Lb-qCu">
-                                                <rect key="frame" x="0.0" y="35" width="73" height="30"/>
+                                                <rect key="frame" x="0.0" y="82.5" width="73" height="30"/>
                                                 <state key="normal" title="IR ON/OFF"/>
                                                 <connections>
                                                     <action selector="toggleIR:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PGZ-0g-IfH"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLo-qj-plD">
-                                                <rect key="frame" x="113" y="35" width="35" height="30"/>
-                                                <state key="normal" title="LEFT"/>
-                                                <connections>
-                                                    <action selector="moveCameraLeft:" destination="BYZ-38-t0r" eventType="touchDown" id="LPR-9W-kIH"/>
-                                                    <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Wd-Ex-zRN"/>
-                                                </connections>
-                                            </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="adC-XL-TWy">
-                                                <rect key="frame" x="188" y="0.0" width="47" height="100"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n2d-dm-6d2">
+                                                <rect key="frame" x="93" y="0.0" width="49" height="195"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQY-b2-X84">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="↖️"/>
+                                                        <connections>
+                                                            <action selector="moveCameraLeftUp:" destination="BYZ-38-t0r" eventType="touchDown" id="AMp-ej-DWf"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MSg-6h-4c2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLo-qj-plD">
+                                                        <rect key="frame" x="0.0" y="65" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="⬅️"/>
+                                                        <connections>
+                                                            <action selector="moveCameraLeft:" destination="BYZ-38-t0r" eventType="touchDown" id="LPR-9W-kIH"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Wd-Ex-zRN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhX-Qu-b6O">
+                                                        <rect key="frame" x="0.0" y="130" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="↙️"/>
+                                                        <connections>
+                                                            <action selector="moveCameraLeftDownWith_sender:" destination="BYZ-38-t0r" eventType="touchDown" id="PGE-KC-aUy"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YdM-Hi-wmj"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="adC-XL-TWy">
+                                                <rect key="frame" x="162" y="0.0" width="49" height="195"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fz0-S4-Dr2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="30"/>
-                                                        <state key="normal" title="UP"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="⬆️"/>
                                                         <connections>
                                                             <action selector="moveCameraUp:" destination="BYZ-38-t0r" eventType="touchDown" id="v7k-vc-rGj"/>
                                                             <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2nV-gz-jKC"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrU-ef-xSr">
+                                                        <rect key="frame" x="0.0" y="65" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="⏹"/>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-sp-s6U">
-                                                        <rect key="frame" x="0.0" y="70" width="47" height="30"/>
-                                                        <state key="normal" title="DOWN"/>
+                                                        <rect key="frame" x="0.0" y="130" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="⬇️"/>
                                                         <connections>
                                                             <action selector="moveCameraDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Lxj-es-mGk"/>
                                                             <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="REY-d5-mwo"/>
@@ -67,14 +98,38 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RL9-KE-2Ff">
-                                                <rect key="frame" x="275" y="35" width="45" height="30"/>
-                                                <state key="normal" title="RIGHT"/>
-                                                <connections>
-                                                    <action selector="moveCameraRight:" destination="BYZ-38-t0r" eventType="touchDown" id="Ioy-M6-9UB"/>
-                                                    <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ebi-tu-mcj"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YpK-1O-i7x">
+                                                <rect key="frame" x="231" y="0.0" width="49" height="195"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OF-5g-I6k">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="↗️"/>
+                                                        <connections>
+                                                            <action selector="moveCameraRightUp:" destination="BYZ-38-t0r" eventType="touchDown" id="wKF-lL-WOI"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qPV-oi-zPb"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RL9-KE-2Ff">
+                                                        <rect key="frame" x="0.0" y="65" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="➡️"/>
+                                                        <connections>
+                                                            <action selector="moveCameraRight:" destination="BYZ-38-t0r" eventType="touchDown" id="Ioy-M6-9UB"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ebi-tu-mcj"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dN-6b-BRV">
+                                                        <rect key="frame" x="0.0" y="130" width="49" height="65"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                                        <state key="normal" title="↘️"/>
+                                                        <connections>
+                                                            <action selector="moveCameraRightDown:" destination="BYZ-38-t0r" eventType="touchDown" id="qON-Bw-8GA"/>
+                                                            <action selector="stopCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XSg-kF-udr"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>

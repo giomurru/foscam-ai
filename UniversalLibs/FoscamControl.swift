@@ -95,8 +95,24 @@ class FoscamControl {
         sendCamera(controlCommand(for: CameraCommands.PAN_RIGHT))
     }
     
+    public func moveRightUp() {
+        sendCamera(controlCommand(for: CameraCommands.PTZ_RIGHT_UP))
+    }
+    
+    public func moveRightDown() {
+        sendCamera(controlCommand(for: CameraCommands.PTZ_RIGHT_DOWN))
+    }
+    
     public func moveLeft() {
         sendCamera(controlCommand(for: CameraCommands.PAN_LEFT))
+    }
+    
+    public func moveLeftUp() {
+        sendCamera(controlCommand(for: CameraCommands.PTZ_LEFT_UP))
+    }
+    
+    public func moveLeftDown() {
+        sendCamera(controlCommand(for: CameraCommands.PTZ_LEFT_DOWN))
     }
     
     public func moveDown() {

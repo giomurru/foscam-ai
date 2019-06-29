@@ -47,6 +47,26 @@ class ViewController: FaceDetectorViewController, MJPEGLibDelegate, FaceDetector
         cameraController.moveUp()
     }
     
+    @IBAction func moveCameraRightUp(_ sender: NSButton) {
+        print("move camera right up")
+        cameraController.moveRightUp()
+    }
+    
+    @IBAction func moveCameraRightDown(_ sender: NSButton) {
+        print("move camera right down")
+        cameraController.moveRightDown()
+    }
+    
+    @IBAction func moveCameraLeftUp(_ sender: NSButton) {
+        print("move camera left up")
+        cameraController.moveLeftUp()
+    }
+    
+    @IBAction func moveCameraLeftDown(_sender: NSButton) {
+        print("move camera left down")
+        cameraController.moveLeftDown()
+    }
+    
     @IBAction func stopCamera(_ sender: NSButton) {
         print("stop camera")
         cameraController.stop()
