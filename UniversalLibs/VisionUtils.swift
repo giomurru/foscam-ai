@@ -26,7 +26,7 @@ class VisionUtils {
         return CGRect(x: bbox.origin.x - expandW/2.0, y: imageSize.height - bbox.height - bbox.origin.y - expandH/2.0, width: bbox.width + expandW, height: bbox.height + expandH)
     }
     
-    public static func croppedFaces(from imageData: Data, using faceObservations: [VNFaceObservation], imageSize: CGSize) -> [CGImage]{
+    public static func croppedFaces(from imageData: Data, using faceObservations: [VNDetectedObjectObservation], imageSize: CGSize) -> [CGImage]{
         var crops = [CGImage]()
         if let cameraImage = UIImage(data: imageData)?.cgImage {
             for observation in faceObservations {

@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource, GenderClassifierDelegate {
+class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource, ClassifierDelegate {
     
     // FLAG TO CHANGE PTZ
     //var ptz_type = 0;
@@ -103,17 +103,19 @@ class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource
         }
         faceDetector.trackFace(from: imageData)
         
-        if let classifier = genderClassifier {
-            classifier.predictGender(from: imageData, detectedFaces: faceDetector.detectedFaces)
+        if let genderClassifier = self.genderClassifier {
+            genderClassifier.runPrediction(on: imageData, for: faceDetector.detectedFaces)
         } else {
             self.initGenderClassifier()
         }
     }
     
     func initGenderClassifier() {
-        self.genderClassifier = GenderClassifier(labels: ["Male", "Female"], changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.97, imageSize: self.faceDetector.captureDeviceResolution, imageOrientation: .up)
-        self.genderClassifier.prepareVisionRequest()
-        self.genderClassifier.delegate = self
+        if let classifier = try? GenderClassifier(changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.97, imageSize: self.faceDetector.captureDeviceResolution, imageOrientation: .up) {
+            self.genderClassifier = classifier
+            self.genderClassifier.prepareRequest()
+            self.genderClassifier.delegate = self
+        }
     }
     
     // FaceDetectorDataSource
@@ -132,6 +134,11 @@ class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource
     // GenderClassifierDelegate
     func genderDidChange(prediction: String) {
         print("gender: \(prediction)")
+    }
+    
+    // GenderClassifierDelegate
+    func predictionDidChange(_ prediction: String, sender: Classifier) {
+        print("\(sender.name) prediction: \(prediction)")
     }
 }
 
