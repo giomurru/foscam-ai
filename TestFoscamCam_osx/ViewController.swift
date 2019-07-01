@@ -6,85 +6,85 @@
 //  Copyright © 2019 Giovanni Murru. All rights reserved.
 //
 
+#if os(OSX)
 import Cocoa
+#else
+import UIKit
+#endif
 import CoreML
 import Vision
-class OverlayView: NSView {
-    override func draw(_ dirtyRect: NSRect) {
-        NSColor.clear.set()
-        dirtyRect.fill()
-    }
-}
 
-class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource, ClassifierDelegate {
 
-    @IBOutlet weak var imageView: NSImageView!
+class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource, ClassifierDelegate {
+
+    private let cameraSize = CGSize(width: 640.0, height: 480.0)
+    
+    @IBOutlet weak var imageView: UIImageView!
+    #if os(OSX)
     var overlayView: OverlayView!
+    #endif
     var cameraController : FoscamControl!
     var genderClassifier : GenderClassifier!
     var faceDetector : FaceDetector!
     
-    @IBAction func toggleIR(_ sender: NSButton) {
+    @IBAction func toggleIR(_ sender: UIButton) {
         cameraController.toggleIR()
     }
     
-    @IBAction func moveCameraRight(_ sender: NSButton) {
+    @IBAction func moveCameraRight(_ sender: UIButton) {
         print("move camera right")
         cameraController.moveRight()
     }
     
-    @IBAction func moveCameraLeft(_ sender: NSButton) {
+    @IBAction func moveCameraLeft(_ sender: UIButton) {
         print("move camera left")
         cameraController.moveLeft()
         
     }
-    @IBAction func moveCameraDown(_ sender: NSButton) {
+    @IBAction func moveCameraDown(_ sender: UIButton) {
         print("move camera down")
         cameraController.moveDown()
     }
     
-    @IBAction func moveCameraUp(_ sender: NSButton) {
+    @IBAction func moveCameraUp(_ sender: UIButton) {
         print("move camera up")
         cameraController.moveUp()
     }
     
-    @IBAction func moveCameraRightUp(_ sender: NSButton) {
+    @IBAction func moveCameraRightUp(_ sender: UIButton) {
         print("move camera right up")
         cameraController.moveRightUp()
     }
     
-    @IBAction func moveCameraRightDown(_ sender: NSButton) {
+    @IBAction func moveCameraRightDown(_ sender: UIButton) {
         print("move camera right down")
         cameraController.moveRightDown()
     }
     
-    @IBAction func moveCameraLeftUp(_ sender: NSButton) {
+    @IBAction func moveCameraLeftUp(_ sender: UIButton) {
         print("move camera left up")
         cameraController.moveLeftUp()
     }
     
-    @IBAction func moveCameraLeftDown(_sender: NSButton) {
+    @IBAction func moveCameraLeftDown(_sender: UIButton) {
         print("move camera left down")
         cameraController.moveLeftDown()
     }
     
-    @IBAction func stopCamera(_ sender: NSButton) {
+    @IBAction func stopCamera(_ sender: UIButton) {
         print("stop camera")
         cameraController.stop()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.faceDetector = FaceDetector()
-        self.faceDetector.datasource = self
         
+        #if os(OSX)
         self.overlayView = OverlayView(frame: self.imageView.bounds)
         self.overlayView.wantsLayer = true
         self.imageView.addSubview(self.overlayView)
+        #endif
         
-        if let previewRootLayer = self.overlayView?.layer {
-            self.faceDetector.rootLayer = previewRootLayer
-        }
         // Do any additional setup after loading the view.
         // Set the ImageView to the stream object
 //        Note: to use FoscamControl you have to create a struct called LoginConstants with your credentials such as the one in the example below.
@@ -95,8 +95,6 @@ class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource
 //            static let pwd = "password"
 //        }
         cameraController = FoscamControl(with: LoginConstants.domain, user: LoginConstants.user, password: LoginConstants.pwd, streamDelegate: self)
-        self.faceDetector.captureDeviceResolution = CGSize(width: 640, height: 480)
-        self.faceDetector.prepareVisionRequest()
         cameraController.startStreaming()
     }
     
@@ -106,36 +104,65 @@ class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource
     
     func session(_ session: URLSession, didUpdate imageData: Data) {
         DispatchQueue.main.async {
-            if let image = NSImage(data: imageData) {
+            if let image = UIImage(data: imageData) {
                 self.imageView.image = image
             }
         }
-        faceDetector.trackFace(from: imageData)
         
-        if let genderClassifier = self.genderClassifier {
-            genderClassifier.runPrediction(on: imageData, for: faceDetector.detectedFaces)
+        if let faceDetector = self.faceDetector {
+            faceDetector.runRequest(on: imageData)
         } else {
             DispatchQueue.main.async {
+                self.initFaceDetector()
+            }
+        }
+        
+        
+        if let genderClassifier = self.genderClassifier {
+            genderClassifier.runRequest(on: imageData, for: faceDetector.detectedFaces)
+        } else {
+            DispatchQueue.main.async {
+                #if os(OSX)
                 if let imageRect = self.imageView?.contentClippingRect {
                     self.overlayView.frame = imageRect
                 }
+                #endif
+                self.initGenderClassifier()
             }
-            self.initGenderClassifier()
         }
     }
     
     func initGenderClassifier() {
-        if let classifier = try? GenderClassifier(changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.97, imageSize: self.faceDetector.captureDeviceResolution, imageOrientation: .up) {
+        if let classifier = try? GenderClassifier(changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.97, imageSize: cameraSize, imageOrientation: .up) {
+            classifier.delegate = self
             self.genderClassifier = classifier
             self.genderClassifier.prepareRequest()
-            self.genderClassifier.delegate = self
+        } else {
+            print("Error on GenderClassifier init")
         }
     }
     
+    func initFaceDetector() {
+        self.faceDetector = FaceDetector(confidenceOfPredictionThreshold: 0.97, imageSize: cameraSize, imageOrientation: .up)
+        self.faceDetector.datasource = self
+        #if os(OSX)
+        if let previewRootLayer = self.overlayView?.layer {
+            self.faceDetector.rootLayer = previewRootLayer
+        }
+        #elseif os(iOS)
+        if let previewRootLayer = self.imageView?.layer {
+            self.faceDetector.rootLayer = previewRootLayer
+        }
+        #endif
+        self.faceDetector.prepareRequest()
+    }
+    
     // FaceDetectorDataSource
-    func visionContentSize() -> CGSize {
+    var displaySize : CGSize {
         if let contentRect = self.imageView?.contentClippingRect {
+            #if os(OSX)
             self.overlayView.frame = contentRect
+            #endif
             return contentRect.size
         }
         return CGSize()
@@ -146,7 +173,11 @@ class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource
     }
     
     func overlayLayerScaleMultipliers() -> CGPoint {
+        #if os(OSX)
         return CGPoint(x: 1.0, y: -1.0)
+        #elseif os(iOS)
+        return CGPoint(x: 1.0, y: 1.0)
+        #endif
     }
     
     // GenderClassifierDelegate
@@ -154,4 +185,3 @@ class ViewController: NSViewController, MJPEGLibDelegate, FaceDetectorDataSource
         print("\(sender.name) prediction: \(prediction)")
     }
 }
-

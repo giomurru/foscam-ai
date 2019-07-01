@@ -19,14 +19,18 @@ protocol ClassifierDelegate : AnyObject {
     func predictionDidChange(_ prediction: String, sender: Classifier)
 }
 
-class Classifier {
+class Classifier: VisionRequestManager {
+    
+    //VisionRequestManager protocol requirements
     var name : String
+    var confidenceThreshold : Float
+    var imageOrientation : CGImagePropertyOrientation
+    var imageSize : CGSize
+    
+    //Other vars
     private var model : VNCoreMLModel
     private var request: [VNCoreMLRequest]?
     private var filteredPredictions : [String : LowPassFilter]
-    private var confidenceThreshold : Float
-    private var imageOrientation : CGImagePropertyOrientation
-    private var imageSize : CGSize
     weak var delegate : ClassifierDelegate?
     
     init(mlModel: MLModel, labels: [String], changeCategoryFilteringFactor: Float = 0.7, confidenceOfPredictionThreshold: Float = 0.97, imageSize: CGSize, imageOrientation: CGImagePropertyOrientation) throws {
@@ -58,17 +62,17 @@ class Classifier {
     }
     
     // Public API
-    func runPrediction(on imageData: Data, for objectObservations: [VNDetectedObjectObservation]) {
+    func runRequest(on imageData: Data, for objectObservations: [VNDetectedObjectObservation]) {
         if objectObservations.count > 0 {
             for croppedFace in VisionUtils.croppedFaces(from: imageData, using: objectObservations, imageSize: imageSize) {
-                runPrediction(on: croppedFace)
+                runRequest(on: croppedFace)
             }
         } else {
-            runPrediction(on: imageData)
+            runRequest(on: imageData)
         }
     }
     
-    func runPrediction(on image: CGImage) {
+    func runRequest(on image: CGImage) {
         let requestHandler = VNImageRequestHandler(cgImage: image, orientation: imageOrientation, options: [:])
         do {
             guard let request = self.request else {
@@ -80,7 +84,7 @@ class Classifier {
         }
     }
     
-    func runPrediction(on imageData: Data) {
+    func runRequest(on imageData: Data) {
         let requestHandler = VNImageRequestHandler(data: imageData, orientation: imageOrientation, options: [:])
         do {
             guard let request = self.request else {

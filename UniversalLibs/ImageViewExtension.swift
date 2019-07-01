@@ -7,14 +7,11 @@
 //
 
 import Foundation
-
 #if os(OSX)
 import Cocoa
-typealias UIImageView = NSImageView
-#elseif os(iOS)
+#else
 import UIKit
 #endif
-
 extension UIImageView {
     //WARNING: works only with .scaleAspectFit for iOS
     var contentClippingRect: CGRect {

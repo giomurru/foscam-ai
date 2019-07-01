@@ -26,7 +26,6 @@
 		3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetector.swift */; };
 		3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */; };
 		3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */; };
-		3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */; };
 		3F9A7E1E22C26CBA00EB2D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */; };
 		3F9A7E2022C26CBD00EB2D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */; };
 		3F9A7E2322C26CBD00EB2D15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2122C26CBD00EB2D15 /* LaunchScreen.storyboard */; };
@@ -35,6 +34,12 @@
 		3FAC4D0222C7BF2100BF2F3E /* VisionInputInformationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0022C7BF2100BF2F3E /* VisionInputInformationProvider.swift */; };
 		3FAC4D0722C7DBC500BF2F3E /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0622C7DBC500BF2F3E /* Classifier.swift */; };
 		3FAC4D0822C7DBC500BF2F3E /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0622C7DBC500BF2F3E /* Classifier.swift */; };
+		3FAC4D0A22C8265200BF2F3E /* VisionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0922C8265200BF2F3E /* VisionRequestManager.swift */; };
+		3FAC4D0B22C8265200BF2F3E /* VisionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0922C8265200BF2F3E /* VisionRequestManager.swift */; };
+		3FAC4D0D22CA0B0200BF2F3E /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0C22CA0B0200BF2F3E /* OverlayView.swift */; };
+		3FAC4D0F22CA0BE400BF2F3E /* iOSXBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0E22CA0BE400BF2F3E /* iOSXBridge.swift */; };
+		3FAC4D1022CA0BE400BF2F3E /* iOSXBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC4D0E22CA0BE400BF2F3E /* iOSXBridge.swift */; };
+		3FAC4D1122CA151300BF2F3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2253DF22C2D4760092AF77 /* ViewController.swift */; };
 		3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */; };
 		3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
 		3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
@@ -58,7 +63,6 @@
 		3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageViewExtension.swift; sourceTree = "<group>"; };
 		3F9A7E1522C26CBA00EB2D15 /* TestFoscamCam_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestFoscamCam_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F9A7E1D22C26CBA00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F9A7E2222C26CBD00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,6 +70,9 @@
 		3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGLib.swift; sourceTree = "<group>"; };
 		3FAC4D0022C7BF2100BF2F3E /* VisionInputInformationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionInputInformationProvider.swift; sourceTree = "<group>"; };
 		3FAC4D0622C7DBC500BF2F3E /* Classifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classifier.swift; sourceTree = "<group>"; };
+		3FAC4D0922C8265200BF2F3E /* VisionRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRequestManager.swift; sourceTree = "<group>"; };
+		3FAC4D0C22CA0B0200BF2F3E /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		3FAC4D0E22CA0BE400BF2F3E /* iOSXBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSXBridge.swift; sourceTree = "<group>"; };
 		3FB422E022C3951B00BA3B71 /* FoscamControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoscamControl.swift; sourceTree = "<group>"; };
 		3FB422E622C4F56300BA3B71 /* FaceDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +105,7 @@
 				3F2253E322C2D4760092AF77 /* Main.storyboard */,
 				3F2253E622C2D4760092AF77 /* Info.plist */,
 				3F2253E722C2D4760092AF77 /* TestFoscamCam_osx.entitlements */,
+				3FAC4D0C22CA0B0200BF2F3E /* OverlayView.swift */,
 			);
 			path = TestFoscamCam_osx;
 			sourceTree = "<group>";
@@ -134,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */,
-				3F9A7E1A22C26CBA00EB2D15 /* ViewController.swift */,
 				3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */,
 				3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */,
 				3F9A7E2122C26CBD00EB2D15 /* LaunchScreen.storyboard */,
@@ -146,10 +153,12 @@
 		3FB422DE22C36A4C00BA3B71 /* UniversalLibs */ = {
 			isa = PBXGroup;
 			children = (
+				3FAC4D0E22CA0BE400BF2F3E /* iOSXBridge.swift */,
 				3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */,
 				3FB422E622C4F56300BA3B71 /* FaceDetector.swift */,
 				3F43707A22C65B960065502C /* VisionUtils.swift */,
 				3F43707D22C6679F0065502C /* LowPassFilter.swift */,
+				3FAC4D0922C8265200BF2F3E /* VisionRequestManager.swift */,
 				3FAC4D0622C7DBC500BF2F3E /* Classifier.swift */,
 				3F43707722C65A2E0065502C /* GenderClassifier.swift */,
 				3FAC4D0022C7BF2100BF2F3E /* VisionInputInformationProvider.swift */,
@@ -266,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAC4D1022CA0BE400BF2F3E /* iOSXBridge.swift in Sources */,
 				3FAC4D0822C7DBC500BF2F3E /* Classifier.swift in Sources */,
 				3F43707922C65A2E0065502C /* GenderClassifier.swift in Sources */,
 				3F43707C22C65B960065502C /* VisionUtils.swift in Sources */,
@@ -275,11 +285,13 @@
 				3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F2253E022C2D4760092AF77 /* ViewController.swift in Sources */,
+				3FAC4D0D22CA0B0200BF2F3E /* OverlayView.swift in Sources */,
 				3F43707622C64C040065502C /* GenderNet.mlmodel in Sources */,
 				3F2253DE22C2D4760092AF77 /* AppDelegate.swift in Sources */,
 				3F47E1DA22C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
 				3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */,
 				3F43707F22C6679F0065502C /* LowPassFilter.swift in Sources */,
+				3FAC4D0B22C8265200BF2F3E /* VisionRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,18 +299,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAC4D0F22CA0BE400BF2F3E /* iOSXBridge.swift in Sources */,
 				3FAC4D0122C7BF2100BF2F3E /* VisionInputInformationProvider.swift in Sources */,
+				3FAC4D0A22C8265200BF2F3E /* VisionRequestManager.swift in Sources */,
 				3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3FAC4D0722C7DBC500BF2F3E /* Classifier.swift in Sources */,
 				3F43707B22C65B960065502C /* VisionUtils.swift in Sources */,
 				3F43707E22C6679F0065502C /* LowPassFilter.swift in Sources */,
 				3F43707822C65A2E0065502C /* GenderClassifier.swift in Sources */,
-				3F9A7E1B22C26CBA00EB2D15 /* ViewController.swift in Sources */,
 				3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */,
 				3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */,
 				3F47E1D922C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
+				3FAC4D1122CA151300BF2F3E /* ViewController.swift in Sources */,
 				3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

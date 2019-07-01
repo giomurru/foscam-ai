@@ -10,14 +10,9 @@ import Foundation
 import Vision
 #if os(OSX)
 import Cocoa
-typealias UIViewController = NSViewController
-typealias UIColor = NSColor
-typealias UIImage = NSImage
-#elseif os(iOS)
+#else
 import UIKit
 #endif
-
-
 class VisionUtils {
     public static func faceBounds(from boundingBox: CGRect, imageSize: CGSize) -> CGRect {
         let bbox = VNImageRectForNormalizedRect(boundingBox, Int(imageSize.width), Int(imageSize.height))

@@ -14,16 +14,28 @@ import Foundation
 import Vision
 
 protocol FaceDetectorDataSource : AnyObject {
-    func visionContentSize() -> CGSize
-    func overlayLayerOrientation() -> CGImagePropertyOrientation
+    var displaySize : CGSize { get }
     func overlayLayerScaleMultipliers() -> CGPoint // multipliers to the scale of the overlay layer
 }
 
-class FaceDetector
+class FaceDetector : VisionRequestManager
 {
+    func runRequest(on image: CGImage) {
+        
+    }
+    
+    func runRequest(on imageData: Data, for objectObservations: [VNDetectedObjectObservation]) {
+        
+    }
+    
+    //VisionRequestManager protocol requirements
+    var name : String
+    var confidenceThreshold : Float
+    var imageOrientation : CGImagePropertyOrientation
+    var imageSize : CGSize
+    
     weak var datasource : FaceDetectorDataSource?
     
-    var captureDeviceResolution: CGSize = CGSize()
     // Layer UI for drawing Vision results
     var rootLayer: CALayer?
     var detectionOverlayLayer: CALayer?
@@ -33,10 +45,16 @@ class FaceDetector
     // Vision requests
     private var detectionRequests: [VNDetectFaceRectanglesRequest]?
     
-    func trackFace(from imageData: Data) {
+    init(confidenceOfPredictionThreshold: Float = 0.97, imageSize: CGSize, imageOrientation: CGImagePropertyOrientation) {
+        self.name = "Face Detector"
+        self.confidenceThreshold = confidenceOfPredictionThreshold
+        self.imageSize = imageSize
+        self.imageOrientation = imageOrientation
+    }
+    
+    func runRequest(on imageData: Data) {
         let requestHandlerOptions: [VNImageOption: AnyObject] = [:]
-        let exifOrientation = self.datasource?.overlayLayerOrientation() ?? CGImagePropertyOrientation.up
-        let imageRequestHandler = VNImageRequestHandler(data: imageData, orientation: exifOrientation, options: requestHandlerOptions)
+        let imageRequestHandler = VNImageRequestHandler(data: imageData, orientation: imageOrientation, options: requestHandlerOptions)
         do {
             guard let detectRequests = self.detectionRequests else {
                 return
@@ -48,7 +66,7 @@ class FaceDetector
     }
     
     //Vision
-    func prepareVisionRequest() {
+    func prepareRequest() {
         
         let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in
             
@@ -77,7 +95,7 @@ class FaceDetector
     }
     
     fileprivate func setupVisionDrawingLayers() {
-        let captureDeviceResolution = self.captureDeviceResolution
+        let captureDeviceResolution = self.imageSize
         
         let captureDeviceBounds = CGRect(x: 0,
                                          y: 0,
@@ -121,7 +139,7 @@ class FaceDetector
     }
     
     fileprivate func addBoundingBox(to faceRectanglePath: CGMutablePath, for faceObservation: VNFaceObservation) {
-        let faceBounds = VisionUtils.faceBounds(from: faceObservation.boundingBox, imageSize: self.captureDeviceResolution)
+        let faceBounds = VisionUtils.faceBounds(from: faceObservation.boundingBox, imageSize: imageSize)
         faceRectanglePath.addRect(faceBounds)
     }
     
@@ -161,15 +179,14 @@ class FaceDetector
                 return
         }
         
-        CATransaction.setValue(NSNumber(value: true), forKey: kCATransactionDisableActions)
-        
-        if let videoPreviewSize = self.datasource?.visionContentSize() {
-            // Rotate the layer into screen orientation.
+        // Rotate the layer into screen orientation.
+        if let datasource = self.datasource {
+            CATransaction.setValue(NSNumber(value: true), forKey: kCATransactionDisableActions)
             let rotation : CGFloat = 0
-            let scaleX : CGFloat = videoPreviewSize.width / captureDeviceResolution.width
-            let scaleY : CGFloat = videoPreviewSize.height / captureDeviceResolution.height
+            let scaleX : CGFloat = datasource.displaySize.width / imageSize.width
+            let scaleY : CGFloat = datasource.displaySize.height / imageSize.height
             
-            let multipliers = self.datasource?.overlayLayerScaleMultipliers() ?? CGPoint(x: 1.0, y: 1.0)
+            let multipliers = datasource.overlayLayerScaleMultipliers()
             // Scale and mirror the image to ensure upright presentation.
             let affineTransform = CGAffineTransform(rotationAngle: radiansForDegrees(rotation))
                 .scaledBy(x: multipliers.x * scaleX, y: multipliers.y * scaleY)
