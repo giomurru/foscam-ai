@@ -15,7 +15,7 @@ import CoreML
 import Vision
 
 
-class MainViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource, ClassifierDelegate {
+class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate, FaceDetectorDelegate {
 
     private let cameraSize = CGSize(width: 640.0, height: 480.0)
     
@@ -24,6 +24,8 @@ class MainViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSo
     var cameraController : FoscamControl!
     var genderClassifier : GenderClassifier!
     var faceDetector : FaceDetector!
+    var faceDetectorDrawer : ObjectDetectorDrawer!
+    var detectedFaces : [VNFaceObservation]?
     
     @IBAction func toggleIR(_ sender: UIButton) {
         cameraController.toggleIR()
@@ -115,12 +117,14 @@ class MainViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSo
         
         
         if let genderClassifier = self.genderClassifier {
-            genderClassifier.runRequest(on: imageData, for: faceDetector.detectedFaces)
+            if let detectedFaces = self.detectedFaces {
+                genderClassifier.runRequest(on: imageData, for: detectedFaces)
+            }
         } else {
             DispatchQueue.main.async {
-                if let imageRect = self.imageView?.contentClippingRect {
-                    self.overlayView.frame = imageRect
-                }
+//                if let imageRect = self.imageView?.contentClippingRect {
+//                    self.overlayView.frame = imageRect
+//                }
                 self.initGenderClassifier()
             }
         }
@@ -137,37 +141,28 @@ class MainViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSo
     }
     
     func initFaceDetector() {
+        guard let contentRect = self.imageView?.contentClippingRect, let overlayView = self.overlayView else {
+            return
+        }
         self.faceDetector = FaceDetector(confidenceOfPredictionThreshold: 0.97, imageSize: cameraSize, imageOrientation: .up)
-        self.faceDetector.datasource = self
-        if let previewRootLayer = self.overlayView?.layer {
-            self.faceDetector.rootLayer = previewRootLayer
-        }
+        overlayView.frame = contentRect
+        self.faceDetectorDrawer = ObjectDetectorDrawer(displaySize: contentRect.size, captureSize: cameraSize)
+        self.faceDetector.delegate = self
+        self.faceDetectorDrawer.rootLayer = overlayView.layer
         self.faceDetector.prepareRequest()
-    }
-    
-    // FaceDetectorDataSource
-    var displaySize : CGSize {
-        if let contentRect = self.imageView?.contentClippingRect {
-            self.overlayView.frame = contentRect
-            return contentRect.size
-        }
-        return CGSize()
-    }
-    
-    func overlayLayerOrientation() -> CGImagePropertyOrientation {
-        return CGImagePropertyOrientation.up
-    }
-    
-    func overlayLayerScaleMultipliers() -> CGPoint {
-        #if os(OSX)
-        return CGPoint(x: 1.0, y: -1.0)
-        #elseif os(iOS)
-        return CGPoint(x: 1.0, y: 1.0)
-        #endif
+        self.faceDetectorDrawer.setupVisionDrawingLayers()
     }
     
     // GenderClassifierDelegate
     func predictionDidChange(_ prediction: String, sender: Classifier) {
         print("\(sender.name) prediction: \(prediction)")
     }
+    
+    func predictionDidChange(_ prediction: [VNFaceObservation], sender: FaceDetector) {
+        self.detectedFaces = prediction
+        DispatchQueue.main.async {
+            self.faceDetectorDrawer.draw(prediction)
+        }
+    }
+    
 }

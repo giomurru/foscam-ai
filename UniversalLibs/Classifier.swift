@@ -21,32 +21,24 @@ protocol ClassifierDelegate : AnyObject {
 
 class Classifier: VisionRequestManager {
     
-    //VisionRequestManager protocol requirements
-    var name : String
-    var confidenceThreshold : Float
-    var imageOrientation : CGImagePropertyOrientation
-    var imageSize : CGSize
-    
     //Other vars
     private var model : VNCoreMLModel
-    private var request: [VNCoreMLRequest]?
+    
     private var filteredPredictions : [String : LowPassFilter]
     weak var delegate : ClassifierDelegate?
     
     init(mlModel: MLModel, labels: [String], changeCategoryFilteringFactor: Float = 0.7, confidenceOfPredictionThreshold: Float = 0.97, imageSize: CGSize, imageOrientation: CGImagePropertyOrientation) throws {
-        self.name = mlModel.modelDescription.metadata[.description] as! String
-        self.confidenceThreshold = confidenceOfPredictionThreshold
-        self.filteredPredictions = [String : LowPassFilter]()
-        self.imageOrientation = imageOrientation
-        self.imageSize = imageSize
         do {
             self.model =  try VNCoreMLModel(for: mlModel)
         } catch {
             throw ClassifierError.invalidModel
         }
+        self.filteredPredictions = [String : LowPassFilter]()
         for category in labels {
             self.filteredPredictions[category] = LowPassFilter(value: 0.5, filterFactor: changeCategoryFilteringFactor)
         }
+        super.init(confidenceOfPredictionThreshold: confidenceOfPredictionThreshold, imageSize: imageSize, imageOrientation: imageOrientation)
+        self.name = mlModel.modelDescription.metadata[.description] as! String
     }
     
     private var prediction : String = "Undefined"
@@ -58,41 +50,6 @@ class Classifier: VisionRequestManager {
             } else {
                 //prediction is the same
             }
-        }
-    }
-    
-    // Public API
-    func runRequest(on imageData: Data, for objectObservations: [VNDetectedObjectObservation]) {
-        if objectObservations.count > 0 {
-            for croppedFace in VisionUtils.croppedFaces(from: imageData, using: objectObservations, imageSize: imageSize) {
-                runRequest(on: croppedFace)
-            }
-        } else {
-            runRequest(on: imageData)
-        }
-    }
-    
-    func runRequest(on image: CGImage) {
-        let requestHandler = VNImageRequestHandler(cgImage: image, orientation: imageOrientation, options: [:])
-        do {
-            guard let request = self.request else {
-                return
-            }
-            try requestHandler.perform(request)
-        } catch let error {
-            print("Failed to perform request: \(error.localizedDescription)")
-        }
-    }
-    
-    func runRequest(on imageData: Data) {
-        let requestHandler = VNImageRequestHandler(data: imageData, orientation: imageOrientation, options: [:])
-        do {
-            guard let request = self.request else {
-                return
-            }
-            try requestHandler.perform(request)
-        } catch let error {
-            print("Failed to perform request: \(error.localizedDescription)")
         }
     }
     
@@ -111,6 +68,10 @@ class Classifier: VisionRequestManager {
             }
         })
         self.request = [request]
+    }
+    
+    override func runRequest(on imageData: Data, for objectObservations: [VNDetectedObjectObservation]) {
+        super.runRequest(on: imageData, for: objectObservations)
     }
 }
 

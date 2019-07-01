@@ -674,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="TestFoscamCam_osx" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Foscam_AI_osx" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -704,27 +704,27 @@
         <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="TestFoscamCam_osx" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="Foscam_AI_osx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="514" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="514" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vab-m6-5IR">
-                                <rect key="frame" x="0.0" y="0.0" width="514" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="514" height="250"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5L-kL-grL">
-                                        <rect key="frame" x="0.0" y="270" width="334" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="250"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" secondItem="x5L-kL-grL" secondAttribute="height" multiplier="640:480" id="Uk7-AY-ils"/>
                                             <constraint firstAttribute="width" constant="334" id="eL9-C5-lJb"/>
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="i4c-fP-fEm"/>
                                     </imageView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="rfd-aZ-E3f">
-                                        <rect key="frame" x="334" y="0.0" width="180" height="270"/>
+                                        <rect key="frame" x="334" y="0.0" width="180" height="250"/>
                                         <subviews>
-                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="40" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-7E-gw9">
-                                                <rect key="frame" x="23" y="10" width="134" height="190"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="40" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-7E-gw9">
+                                                <rect key="frame" x="23" y="30" width="134" height="190"/>
                                                 <subviews>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfi-Jf-ZMy">
                                                         <rect key="frame" x="0.0" y="61" width="134" height="129"/>
@@ -908,8 +908,18 @@
                                                 </customSpacing>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AYt-7E-gw9" firstAttribute="centerX" secondItem="rfd-aZ-E3f" secondAttribute="centerX" id="9Sk-Zz-nhq"/>
+                                            <constraint firstItem="AYt-7E-gw9" firstAttribute="centerY" secondItem="rfd-aZ-E3f" secondAttribute="centerY" id="EwX-2W-bbx"/>
+                                        </constraints>
                                     </customView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="x5L-kL-grL" firstAttribute="leading" secondItem="Vab-m6-5IR" secondAttribute="leading" id="V2m-9n-lcf"/>
+                                    <constraint firstAttribute="bottom" secondItem="x5L-kL-grL" secondAttribute="bottom" id="dbw-Rr-DyM"/>
+                                    <constraint firstItem="x5L-kL-grL" firstAttribute="top" secondItem="Vab-m6-5IR" secondAttribute="top" id="h1Z-Qv-MoX"/>
+                                    <constraint firstItem="rfd-aZ-E3f" firstAttribute="leading" secondItem="x5L-kL-grL" secondAttribute="trailing" id="mGn-bP-GEE"/>
+                                </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>

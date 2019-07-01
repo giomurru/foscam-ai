@@ -15,4 +15,8 @@ class GenderClassifier : Classifier {
         try super.init(mlModel: GenderNet().model, labels: ["Male", "Female"], changeCategoryFilteringFactor: changeCategoryFilteringFactor, confidenceOfPredictionThreshold: confidenceOfPredictionThreshold, imageSize: imageSize, imageOrientation: imageOrientation)
         self.name = "Gender"
     }
+    
+    func runRequest(on imageData: Data, for objectObservations: [VNFaceObservation]) {
+        super.runRequest(on: imageData, for: objectObservations)
+    }
 }
