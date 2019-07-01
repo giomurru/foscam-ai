@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TestFoscamCam.xcodeproj">
+      location = "self:/Users/gio/Developer/labs/TestFoscamCam/Foscam-AI.xcodeproj">
    </FileRef>
 </Workspace>
