@@ -25,6 +25,10 @@
 		3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
 		3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetector.swift */; };
 		3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */; };
+		3F9662BE22CAAA02003B8665 /* AgeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */; };
+		3F9662BF22CAAA02003B8665 /* AgeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */; };
+		3F9662C122CAAA71003B8665 /* AgeClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662C022CAAA71003B8665 /* AgeClassifier.swift */; };
+		3F9662C222CAAA71003B8665 /* AgeClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662C022CAAA71003B8665 /* AgeClassifier.swift */; };
 		3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */; };
 		3F9A7E1E22C26CBA00EB2D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */; };
 		3F9A7E2022C26CBD00EB2D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */; };
@@ -62,6 +66,8 @@
 		3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConstants.swift; sourceTree = "<group>"; };
 		3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageViewExtension.swift; sourceTree = "<group>"; };
+		3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AgeNet.mlmodel; sourceTree = "<group>"; };
+		3F9662C022CAAA71003B8665 /* AgeClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeClassifier.swift; sourceTree = "<group>"; };
 		3F9A7E1522C26CBA00EB2D15 /* Foscam-AI_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Foscam-AI_ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F9A7E1D22C26CBA00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 		3F43707322C64C040065502C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */,
 				3F43707422C64C040065502C /* GenderNet.mlmodel */,
 			);
 			path = Models;
@@ -164,6 +171,7 @@
 				3F43707D22C6679F0065502C /* LowPassFilter.swift */,
 				3FAC4D0622C7DBC500BF2F3E /* Classifier.swift */,
 				3F43707722C65A2E0065502C /* GenderClassifier.swift */,
+				3F9662C022CAAA71003B8665 /* AgeClassifier.swift */,
 				3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */,
 				3F9A7E2A22C26CF300EB2D15 /* MJPEGLib.swift */,
 				3FB422E022C3951B00BA3B71 /* FoscamControl.swift */,
@@ -286,6 +294,7 @@
 				3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */,
 				3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3FAC4D1A22CA3FC200BF2F3E /* ObjectDetectorDrawer.swift in Sources */,
+				3F9662BF22CAAA02003B8665 /* AgeNet.mlmodel in Sources */,
 				3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F2253E022C2D4760092AF77 /* MainViewController.swift in Sources */,
 				3FAC4D0D22CA0B0200BF2F3E /* OverlayView.swift in Sources */,
@@ -294,6 +303,7 @@
 				3F47E1DA22C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
 				3FB422DD22C3694900BA3B71 /* MJPEGLib.swift in Sources */,
 				3F43707F22C6679F0065502C /* LowPassFilter.swift in Sources */,
+				3F9662C222CAAA71003B8665 /* AgeClassifier.swift in Sources */,
 				3FAC4D0B22C8265200BF2F3E /* VisionRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +316,7 @@
 				3FAC4D0A22C8265200BF2F3E /* VisionRequestManager.swift in Sources */,
 				3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */,
 				3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */,
+				3F9662C122CAAA71003B8665 /* AgeClassifier.swift in Sources */,
 				3FAC4D0722C7DBC500BF2F3E /* Classifier.swift in Sources */,
 				3F43707B22C65B960065502C /* VisionUtils.swift in Sources */,
 				3F43707E22C6679F0065502C /* LowPassFilter.swift in Sources */,
@@ -317,6 +328,7 @@
 				3F47E1D922C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
 				3FAC4D1122CA151300BF2F3E /* MainViewController.swift in Sources */,
+				3F9662BE22CAAA02003B8665 /* AgeNet.mlmodel in Sources */,
 				3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,6 +23,7 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
     var overlayView: OverlayView!
     var cameraController : FoscamControl!
     var genderClassifier : GenderClassifier!
+    var ageClassifier : AgeClassifier!
     var faceDetector : FaceDetector!
     var faceDetectorDrawer : ObjectDetectorDrawer!
     var detectedFaces : [VNFaceObservation]?
@@ -125,6 +126,16 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
                 self.initGenderClassifier()
             }
         }
+        
+        if let ageClassifier = self.ageClassifier {
+            if let detectedFaces = self.detectedFaces {
+                ageClassifier.runRequest(on: imageData, for: detectedFaces)
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.initAgeClassifier()
+            }
+        }
     }
     
     func initGenderClassifier() {
@@ -134,6 +145,16 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
             self.genderClassifier.prepareRequest()
         } else {
             print("Error on GenderClassifier init")
+        }
+    }
+    
+    func initAgeClassifier() {
+        if let classifier = try? AgeClassifier(changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.9, imageSize: cameraSize, imageOrientation: .up) {
+            classifier.delegate = self
+            self.ageClassifier = classifier
+            self.ageClassifier.prepareRequest()
+        } else {
+            print("Error on AgeClassifier init")
         }
     }
     
@@ -150,7 +171,7 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
         self.faceDetectorDrawer.setupVisionDrawingLayers()
     }
     
-    // GenderClassifierDelegate
+    // ClassifierDelegate
     func predictionDidChange(_ prediction: String, sender: Classifier) {
         print("\(sender.name) prediction: \(prediction)")
     }
