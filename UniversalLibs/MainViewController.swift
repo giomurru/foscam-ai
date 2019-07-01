@@ -15,14 +15,12 @@ import CoreML
 import Vision
 
 
-class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource, ClassifierDelegate {
+class MainViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource, ClassifierDelegate {
 
     private let cameraSize = CGSize(width: 640.0, height: 480.0)
     
     @IBOutlet weak var imageView: UIImageView!
-    #if os(OSX)
     var overlayView: OverlayView!
-    #endif
     var cameraController : FoscamControl!
     var genderClassifier : GenderClassifier!
     var faceDetector : FaceDetector!
@@ -79,11 +77,9 @@ class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        #if os(OSX)
         self.overlayView = OverlayView(frame: self.imageView.bounds)
         self.overlayView.wantsLayer = true
         self.imageView.addSubview(self.overlayView)
-        #endif
         
         // Do any additional setup after loading the view.
         // Set the ImageView to the stream object
@@ -122,11 +118,9 @@ class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource
             genderClassifier.runRequest(on: imageData, for: faceDetector.detectedFaces)
         } else {
             DispatchQueue.main.async {
-                #if os(OSX)
                 if let imageRect = self.imageView?.contentClippingRect {
                     self.overlayView.frame = imageRect
                 }
-                #endif
                 self.initGenderClassifier()
             }
         }
@@ -145,24 +139,16 @@ class ViewController: UIViewController, MJPEGLibDelegate, FaceDetectorDataSource
     func initFaceDetector() {
         self.faceDetector = FaceDetector(confidenceOfPredictionThreshold: 0.97, imageSize: cameraSize, imageOrientation: .up)
         self.faceDetector.datasource = self
-        #if os(OSX)
         if let previewRootLayer = self.overlayView?.layer {
             self.faceDetector.rootLayer = previewRootLayer
         }
-        #elseif os(iOS)
-        if let previewRootLayer = self.imageView?.layer {
-            self.faceDetector.rootLayer = previewRootLayer
-        }
-        #endif
         self.faceDetector.prepareRequest()
     }
     
     // FaceDetectorDataSource
     var displaySize : CGSize {
         if let contentRect = self.imageView?.contentClippingRect {
-            #if os(OSX)
             self.overlayView.frame = contentRect
-            #endif
             return contentRect.size
         }
         return CGSize()

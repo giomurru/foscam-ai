@@ -16,5 +16,4 @@ class OverlayView: NSView {
         dirtyRect.fill()
         // Drawing code here.
     }
-    
 }
