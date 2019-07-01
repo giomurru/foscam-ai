@@ -21,16 +21,16 @@ open class MJPEGLib: NSObject , URLSessionDataDelegate {
     
     weak var delegate: MJPEGLibDelegate?
     
-    fileprivate enum StreamStatus {
+    private enum StreamStatus {
         case stop
         case loading
         case play
     }
     
-    fileprivate var receivedData: NSMutableData?
-    fileprivate var dataTask: URLSessionDataTask?
-    fileprivate var session: Foundation.URLSession!
-    fileprivate var status: StreamStatus = .stop
+    private var receivedData: NSMutableData?
+    private var dataTask: URLSessionDataTask?
+    private var session: Foundation.URLSession!
+    private var status: StreamStatus = .stop
     
     open var authenticationHandler: ((URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, URLCredential?))?
     open var contentURL: URL?

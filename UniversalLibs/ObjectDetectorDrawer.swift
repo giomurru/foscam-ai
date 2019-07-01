@@ -18,7 +18,7 @@ class ObjectDetectorDrawer {
     // Layer UI for drawing Vision results
     var rootLayer: CALayer?
     var detectionOverlayLayer: CALayer?
-    var detectedFaceRectangleShapeLayer: CAShapeLayer?
+    var detectedObjectRectangleShapeLayer: CAShapeLayer?
     
     var displaySize : CGSize
     var captureSize : CGSize
@@ -52,28 +52,28 @@ class ObjectDetectorDrawer {
         overlayLayer.bounds = captureDeviceBounds
         overlayLayer.position = overlayLayerCenterPosition
         
-        let faceRectangleShapeLayer = CAShapeLayer()
-        faceRectangleShapeLayer.name = "RectangleOutlineLayer"
-        faceRectangleShapeLayer.bounds = captureDeviceBounds
-        faceRectangleShapeLayer.anchorPoint = normalizedCenterPoint
-        faceRectangleShapeLayer.position = captureDeviceBoundsCenterPoint
-        faceRectangleShapeLayer.fillColor = nil
-        faceRectangleShapeLayer.strokeColor = UIColor.green.cgColor
-        faceRectangleShapeLayer.lineWidth = 1
+        let objectRectangleShapeLayer = CAShapeLayer()
+        objectRectangleShapeLayer.name = "RectangleOutlineLayer"
+        objectRectangleShapeLayer.bounds = captureDeviceBounds
+        objectRectangleShapeLayer.anchorPoint = normalizedCenterPoint
+        objectRectangleShapeLayer.position = captureDeviceBoundsCenterPoint
+        objectRectangleShapeLayer.fillColor = nil
+        objectRectangleShapeLayer.strokeColor = UIColor.green.cgColor
+        objectRectangleShapeLayer.lineWidth = 1
         
-        overlayLayer.addSublayer(faceRectangleShapeLayer)
+        overlayLayer.addSublayer(objectRectangleShapeLayer)
         rootLayer.addSublayer(overlayLayer)
         
         self.detectionOverlayLayer = overlayLayer
-        self.detectedFaceRectangleShapeLayer = faceRectangleShapeLayer
+        self.detectedObjectRectangleShapeLayer = objectRectangleShapeLayer
         
         self.updateLayerGeometry()
         
     }
     
     /// - Tag: DrawPaths
-    func draw(_ faceObservations: [VNFaceObservation]) {
-        guard let faceRectangleShapeLayer = self.detectedFaceRectangleShapeLayer
+    func draw(_ objectObservations: [VNDetectedObjectObservation]) {
+        guard let objectRectangleShapeLayer = self.detectedObjectRectangleShapeLayer
             else {
                 return
         }
@@ -82,29 +82,29 @@ class ObjectDetectorDrawer {
         
         CATransaction.setValue(NSNumber(value: true), forKey: kCATransactionDisableActions)
         
-        let faceRectanglePath = CGMutablePath()
+        let objectRectanglePath = CGMutablePath()
         
-        for faceObservation in faceObservations {
-            var faceBounds = VisionUtils.objectBounds(from: faceObservation.boundingBox, imageSize: captureSize)
+        for objectObservation in objectObservations {
+            var objectBounds = VisionUtils.objectBounds(from: objectObservation.boundingBox, imageSize: captureSize)
             #if os(OSX)
-            faceBounds = CGRect(origin: CGPoint(x: faceBounds.origin.x, y: captureSize.height - faceBounds.origin.y - faceBounds.size.height), size: faceBounds.size)
+            objectBounds = CGRect(origin: CGPoint(x: objectBounds.origin.x, y: captureSize.height - objectBounds.origin.y - objectBounds.size.height), size: objectBounds.size)
             #endif
-            faceRectanglePath.addRect(faceBounds)
+            objectRectanglePath.addRect(objectBounds)
         }
         
-        faceRectangleShapeLayer.path = faceRectanglePath
+        objectRectangleShapeLayer.path = objectRectanglePath
         
         self.updateLayerGeometry()
         
         CATransaction.commit()
     }
     
-    fileprivate func presentErrorAlert(withTitle title: String = "Unexpected Failure", message: String) {
+    private func presentErrorAlert(withTitle title: String = "Unexpected Failure", message: String) {
         //TODO: Implement
        
     }
     
-    fileprivate func updateLayerGeometry() {
+    private func updateLayerGeometry() {
         guard let overlayLayer = self.detectionOverlayLayer
             else {
                 return
@@ -126,7 +126,7 @@ class ObjectDetectorDrawer {
         //overlayLayer.position = CGPoint(x: self.displaySize.width/2.0, y: self.displaySize.height/2.0)
     }
     
-    fileprivate func radiansForDegrees(_ degrees: CGFloat) -> CGFloat {
+    private func radiansForDegrees(_ degrees: CGFloat) -> CGFloat {
         return CGFloat(Double(degrees) * Double.pi / 180.0)
     }
 }

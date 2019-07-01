@@ -39,9 +39,7 @@ class FaceDetector : VisionRequestManager
         }
     }
     
-    //Vision
     func prepareRequest() {
-        
         let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in
             
             if error != nil {
@@ -52,16 +50,11 @@ class FaceDetector : VisionRequestManager
                 let results = faceDetectionRequest.results as? [VNFaceObservation] else {
                     return
             }
-            
             self.prediction = results
             
         })
         
-        
-        
         // Start with detection.  Find face, then track it.
         self.request = [faceDetectionRequest]
-        
-//        self.setupVisionDrawingLayers()
     }
 }

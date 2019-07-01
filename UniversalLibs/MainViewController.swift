@@ -122,9 +122,6 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
             }
         } else {
             DispatchQueue.main.async {
-//                if let imageRect = self.imageView?.contentClippingRect {
-//                    self.overlayView.frame = imageRect
-//                }
                 self.initGenderClassifier()
             }
         }
@@ -158,11 +155,11 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
         print("\(sender.name) prediction: \(prediction)")
     }
     
+    // FaceDetectorDelegate
     func predictionDidChange(_ prediction: [VNFaceObservation], sender: FaceDetector) {
         self.detectedFaces = prediction
         DispatchQueue.main.async {
             self.faceDetectorDrawer.draw(prediction)
         }
     }
-    
 }
