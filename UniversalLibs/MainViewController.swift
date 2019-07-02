@@ -116,24 +116,29 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
             }
         }
         
-        
-        if let genderClassifier = self.genderClassifier {
-            if let detectedFaces = self.detectedFaces {
-                genderClassifier.runRequest(on: imageData, for: detectedFaces)
+        if let detectedFaces = self.detectedFaces {
+            let filteredFaces : [VNFaceObservation] = detectedFaces.compactMap { face in
+                if face.roll?.floatValue == 0.0 && face.yaw?.floatValue == 0.0 {
+                    return face
+                } else {
+                    return nil
+                }
             }
-        } else {
-            DispatchQueue.main.async {
-                self.initGenderClassifier()
+            
+            if let genderClassifier = self.genderClassifier {
+                genderClassifier.runRequest(on: imageData, for: filteredFaces)
+            } else {
+                DispatchQueue.main.async {
+                    self.initGenderClassifier()
+                }
             }
-        }
-        
-        if let ageClassifier = self.ageClassifier {
-            if let detectedFaces = self.detectedFaces {
-                ageClassifier.runRequest(on: imageData, for: detectedFaces)
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.initAgeClassifier()
+            
+            if let ageClassifier = self.ageClassifier {
+                ageClassifier.runRequest(on: imageData, for: filteredFaces)
+            } else {
+                DispatchQueue.main.async {
+                    self.initAgeClassifier()
+                }
             }
         }
     }
