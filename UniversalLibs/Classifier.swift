@@ -16,7 +16,7 @@ enum ClassifierError: Error {
 }
 
 protocol ClassifierDelegate : AnyObject {
-    func predictionDidChange(_ prediction: String, sender: Classifier)
+    func predictionDidChange(_ prediction: VNClassificationObservation, sender: Classifier)
 }
 
 class Classifier: VisionRequestManager {
@@ -41,10 +41,10 @@ class Classifier: VisionRequestManager {
         self.name = mlModel.modelDescription.metadata[.description] as! String
     }
     
-    private var prediction : String = "Undefined"
+    private var prediction : VNClassificationObservation!
     {
         didSet {
-            if oldValue != prediction {
+            if (oldValue == nil && prediction != nil) || oldValue.identifier != prediction.identifier {
                 //did change prediction print it!
                 delegate?.predictionDidChange(prediction, sender:self)
             } else {
@@ -62,7 +62,7 @@ class Classifier: VisionRequestManager {
                 self.filteredPredictions[classification.identifier]?.update(newValue: classification.confidence)
                 if let newConfidence = self.filteredPredictions[classification.identifier]?.value {
                     if newConfidence > self.confidenceThreshold {
-                        self.prediction = classification.identifier
+                        self.prediction = classification
                     }
                 }
             }

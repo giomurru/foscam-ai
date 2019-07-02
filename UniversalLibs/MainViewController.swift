@@ -24,6 +24,7 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
     var cameraController : FoscamControl!
     var genderClassifier : GenderClassifier!
     var ageClassifier : AgeClassifier!
+    var emotionClassifier : EmotionClassifier!
     var faceDetector : FaceDetector!
     var faceDetectorDrawer : ObjectDetectorDrawer!
     var detectedFaces : [VNFaceObservation]?
@@ -140,11 +141,19 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
                     self.initAgeClassifier()
                 }
             }
+            
+            if let emotionClassifier = self.emotionClassifier {
+                emotionClassifier.runRequest(on: imageData, for: filteredFaces)
+            } else {
+                DispatchQueue.main.async {
+                    self.initEmotionClassifier()
+                }
+            }
         }
     }
     
     func initGenderClassifier() {
-        if let classifier = try? GenderClassifier(changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.97, imageSize: cameraSize, imageOrientation: .up) {
+        if let classifier = try? GenderClassifier(changeCategoryFilteringFactor: 0.1, confidenceOfPredictionThreshold: 0.9, imageSize: cameraSize, imageOrientation: .up) {
             classifier.delegate = self
             self.genderClassifier = classifier
             self.genderClassifier.prepareRequest()
@@ -154,12 +163,22 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
     }
     
     func initAgeClassifier() {
-        if let classifier = try? AgeClassifier(changeCategoryFilteringFactor: 0.7, confidenceOfPredictionThreshold: 0.9, imageSize: cameraSize, imageOrientation: .up) {
+        if let classifier = try? AgeClassifier(changeCategoryFilteringFactor: 0.1, confidenceOfPredictionThreshold: 0.9, imageSize: cameraSize, imageOrientation: .up) {
             classifier.delegate = self
             self.ageClassifier = classifier
             self.ageClassifier.prepareRequest()
         } else {
             print("Error on AgeClassifier init")
+        }
+    }
+    
+    func initEmotionClassifier() {
+        if let classifier = try? EmotionClassifier(changeCategoryFilteringFactor: 0.1, confidenceOfPredictionThreshold: 0.9, imageSize: cameraSize, imageOrientation: .up) {
+            classifier.delegate = self
+            self.emotionClassifier = classifier
+            self.emotionClassifier.prepareRequest()
+        } else {
+            print("Error on EmotionClassifier init")
         }
     }
     
@@ -177,8 +196,8 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
     }
     
     // ClassifierDelegate
-    func predictionDidChange(_ prediction: String, sender: Classifier) {
-        print("\(sender.name) prediction: \(prediction)")
+    func predictionDidChange(_ prediction: VNClassificationObservation, sender: Classifier) {
+        print("\(sender.name) prediction: \(prediction.identifier) (\(String(format: "%.0f", prediction.confidence*100))%)")
     }
     
     // FaceDetectorDelegate
