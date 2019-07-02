@@ -35,7 +35,7 @@ enum CameraCommands : Int {
     case IO_OFF=94;
 }
 
-class FoscamControl {
+class FoscamControl : CameraControl {
     weak var delegate: MJPEGLibDelegate?
     var IRisOn : Bool = false
     var domain : String = ""

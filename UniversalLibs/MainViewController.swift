@@ -21,7 +21,7 @@ class MainViewController: UIViewController, MJPEGLibDelegate, ClassifierDelegate
     
     @IBOutlet weak var imageView: UIImageView!
     var overlayView: OverlayView!
-    var cameraController : FoscamControl!
+    var cameraController : CameraControl!
     var genderClassifier : GenderClassifier!
     var ageClassifier : AgeClassifier!
     var emotionClassifier : EmotionClassifier!

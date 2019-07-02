@@ -33,6 +33,8 @@
 		3F9662C822CB53D7003B8665 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662C622CB53D7003B8665 /* CNNEmotions.mlmodel */; };
 		3F9662CA22CB549E003B8665 /* EmotionClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662C922CB549E003B8665 /* EmotionClassifier.swift */; };
 		3F9662CB22CB549E003B8665 /* EmotionClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662C922CB549E003B8665 /* EmotionClassifier.swift */; };
+		3F9662CD22CB61E9003B8665 /* CameraControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662CC22CB61E9003B8665 /* CameraControl.swift */; };
+		3F9662CE22CB61E9003B8665 /* CameraControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662CC22CB61E9003B8665 /* CameraControl.swift */; };
 		3F9A7E1922C26CBA00EB2D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */; };
 		3F9A7E1E22C26CBA00EB2D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1C22C26CBA00EB2D15 /* Main.storyboard */; };
 		3F9A7E2022C26CBD00EB2D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A7E1F22C26CBD00EB2D15 /* Assets.xcassets */; };
@@ -74,6 +76,7 @@
 		3F9662C022CAAA71003B8665 /* AgeClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeClassifier.swift; sourceTree = "<group>"; };
 		3F9662C622CB53D7003B8665 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
 		3F9662C922CB549E003B8665 /* EmotionClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionClassifier.swift; sourceTree = "<group>"; };
+		3F9662CC22CB61E9003B8665 /* CameraControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControl.swift; sourceTree = "<group>"; };
 		3F9A7E1522C26CBA00EB2D15 /* Foscam-AI_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Foscam-AI_ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9A7E1822C26CBA00EB2D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F9A7E1D22C26CBA00EB2D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 				3FB422E022C3951B00BA3B71 /* FoscamControl.swift */,
 				3F2253DF22C2D4760092AF77 /* MainViewController.swift */,
 				3F9662C922CB549E003B8665 /* EmotionClassifier.swift */,
+				3F9662CC22CB61E9003B8665 /* CameraControl.swift */,
 			);
 			path = UniversalLibs;
 			sourceTree = "<group>";
@@ -314,6 +318,7 @@
 				3F9662CB22CB549E003B8665 /* EmotionClassifier.swift in Sources */,
 				3F43707F22C6679F0065502C /* LowPassFilter.swift in Sources */,
 				3F9662C222CAAA71003B8665 /* AgeClassifier.swift in Sources */,
+				3F9662CE22CB61E9003B8665 /* CameraControl.swift in Sources */,
 				3FAC4D0B22C8265200BF2F3E /* VisionRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +333,7 @@
 				3F6D3DA422C5163700B038A0 /* ImageViewExtension.swift in Sources */,
 				3F9662C122CAAA71003B8665 /* AgeClassifier.swift in Sources */,
 				3FAC4D0722C7DBC500BF2F3E /* Classifier.swift in Sources */,
+				3F9662CD22CB61E9003B8665 /* CameraControl.swift in Sources */,
 				3F43707B22C65B960065502C /* VisionUtils.swift in Sources */,
 				3F9662C722CB53D7003B8665 /* CNNEmotions.mlmodel in Sources */,
 				3F43707E22C6679F0065502C /* LowPassFilter.swift in Sources */,
