@@ -13,8 +13,16 @@ static let user = "admin"
 static let pwd = "password"
 }
 ```
-2) Download the models for Gender, Age and Emotion classification and copy them in the Models folder located inside the repository's root directory. 
-These are the links to download the models:
-- GenderNet [Download](https://drive.google.com/file/d/0B1ghKa_MYL6mYkNsZHlyc2ZuaFk/view?usp=sharing)
-- AgeNet [Download](https://drive.google.com/file/d/0B1ghKa_MYL6mT1J3T1BEeWx4TWc/view?usp=sharing)
-- EmotionNet [Download](https://drive.google.com/file/d/0B1ghKa_MYL6mTlYtRGdXNFlpWDQ/view?usp=sharing)
+3) Download the models for Gender, Age and Emotion classification and copy them in the Models folder located inside the repository's root directory. 
+
+Age classification
+Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_agegender/)
+CoreML model [Download](https://drive.google.com/file/d/1PLkI4Jyg086JlvTzwHHI5EbGWgJI-Atv/view?usp=sharing)
+
+Gender classification
+Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_agegender/)
+CoreML model [Download](https://drive.google.com/file/d/1IxU0E1EDjuL-sbY3wd5Wh6BsXTbYTScb/view?usp=sharing)
+
+Emotion Recognition
+Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_emotions/)
+CoreML model [Download](https://drive.google.com/file/d/1ElCJvnEvhtIxZkyEzVUAFPJAMgyBXo57/view?usp=sharing)
