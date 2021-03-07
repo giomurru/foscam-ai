@@ -15,14 +15,20 @@ static let pwd = "password"
 ```
 3) Download the models for Gender, Age and Emotion classification and copy them in the Models folder located inside the repository's root directory. 
 
-Age classification
-Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_agegender/)
-CoreML model [Download](https://drive.google.com/file/d/1PLkI4Jyg086JlvTzwHHI5EbGWgJI-Atv/view?usp=sharing)
+Age classification:
 
-Gender classification
-Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_agegender/)
-CoreML model [Download](https://drive.google.com/file/d/1IxU0E1EDjuL-sbY3wd5Wh6BsXTbYTScb/view?usp=sharing)
+- Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_agegender/)
 
-Emotion Recognition
-Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_emotions/)
-CoreML model [Download](https://drive.google.com/file/d/1ElCJvnEvhtIxZkyEzVUAFPJAMgyBXo57/view?usp=sharing)
+- CoreML model [Download](https://drive.google.com/file/d/1PLkI4Jyg086JlvTzwHHI5EbGWgJI-Atv/view?usp=sharing)
+
+Gender classification:
+
+- Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_agegender/)
+
+- CoreML model [Download](https://drive.google.com/file/d/1IxU0E1EDjuL-sbY3wd5Wh6BsXTbYTScb/view?usp=sharing)
+
+Emotion Recognition:
+
+- Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_emotions/)
+
+- CoreML model [Download](https://drive.google.com/file/d/1ElCJvnEvhtIxZkyEzVUAFPJAMgyBXo57/view?usp=sharing)
