@@ -1,7 +1,7 @@
 This is a framework for running deep learning models on a live camera feed using iOS and OSX platforms.
 An example Xcode project is provided for performing age, gender and emotion classification using the live camera feed of a Foscam IP camera. Note that a simple controller for the Foscam camera is included, allowing you to pan/tilt the camera and enable/disable IR night vision. Please note that this controller has been tested on a Foscam FI8910W Wireless IP camera only, but it is possible it can work with other Foscam camera models. 
 
-Note. I am not the maintainer of the CoreML models used in the demo for age, gender and emotion classification. You can download them by using the links below or you are free to use yours.
+Note. I am not the maintainer of the CoreML models used in the demo for object detection, age, gender and emotion classification. You can download them by using the links below or you are free to use yours.
 
 In order to run the example project you need to
 1) Have a Foscam IP Camera Model FI8910W. Note: if you have another IP camera that supports MJPEG you can create a custom CameraControl object such as `FoscamControl.swift`.
@@ -13,7 +13,7 @@ static let user = "admin"
 static let pwd = "password"
 }
 ```
-3) Download the models for Gender, Age and Emotion classification and copy them in the Models folder located inside the repository's root directory. 
+3) Download the models for Object detection, Gender, Age and Emotion classification and copy them in the Models folder located inside the repository's root directory. 
 
 Age classification:
 
