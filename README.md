@@ -32,3 +32,10 @@ Emotion Recognition:
 - Paper [Download](http://www.openu.ac.il/home/hassner/projects/cnn_emotions/)
 
 - CoreML model [Download](https://drive.google.com/file/d/1ElCJvnEvhtIxZkyEzVUAFPJAMgyBXo57/view?usp=sharing)
+
+Object Detection:
+
+- Reference [View](https://developer.apple.com/machine-learning/models/)
+
+- CoreML model
+    [Download](https://ml-assets.apple.com/coreml/models/Image/ObjectDetection/YOLOv3/YOLOv3.mlmodel)
