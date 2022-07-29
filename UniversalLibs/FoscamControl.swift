@@ -42,6 +42,8 @@ class FoscamControl : CameraControl {
     var stream: MJPEGLib!
     var credentials : String = ""
     
+    var isStreaming: Bool = false
+    
     init(with address: String, user: String, password: String, streamDelegate: MJPEGLibDelegate?) {
         credentials = "user=\(user)&pwd=\(password)"
         domain = "http://" + address
@@ -52,7 +54,13 @@ class FoscamControl : CameraControl {
     }
     
     public func startStreaming() {
+        isStreaming = true
         stream.play()
+    }
+    
+    public func stopStreaming() {
+        isStreaming = false
+        stream.stop()
     }
     
     private func sendCamera(_ command: String) {

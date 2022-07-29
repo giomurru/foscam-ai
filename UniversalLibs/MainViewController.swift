@@ -159,9 +159,21 @@ class MainViewController: UIViewController {
 //            static let pwd = "password"
 //        }
         cameraController = FoscamControl(with: LoginConstants.domain, user: LoginConstants.user, password: LoginConstants.pwd, streamDelegate: self)
-        cameraController.startStreaming()
+        //cameraController?.startStreaming()
+        print("view did load")
     }
     
+    public func startStreaming() {
+        guard let cc = cameraController, !cc.isStreaming else { return }
+        print("start streaming")
+        cc.startStreaming()
+    }
+    
+    public func stopStreaming() {
+        guard let cc = cameraController, cc.isStreaming else { return }
+        print("stop streaming")
+        cc.stopStreaming()
+    }
     
     func createSpeech(speech: String) -> AVSpeechUtterance {
         let utterance = AVSpeechUtterance(string: speech)

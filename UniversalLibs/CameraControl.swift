@@ -9,7 +9,9 @@
 import Foundation
 
 protocol CameraControl {
+    var isStreaming : Bool { get set }
     func startStreaming()
+    func stopStreaming()
     func toggleIR()
     func moveRight()
     func moveRightUp()
