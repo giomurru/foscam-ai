@@ -25,6 +25,8 @@
 		3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */; };
 		3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetector.swift */; };
 		3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */; };
+		3F90C6692892D2C500D1BEE2 /* alarmsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F90C6682892D2C400D1BEE2 /* alarmsound.mp3 */; };
+		3F90C66A2892D2C500D1BEE2 /* alarmsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F90C6682892D2C400D1BEE2 /* alarmsound.mp3 */; };
 		3F9662BE22CAAA02003B8665 /* AgeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */; };
 		3F9662BF22CAAA02003B8665 /* AgeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */; };
 		3F9662C122CAAA71003B8665 /* AgeClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9662C022CAAA71003B8665 /* AgeClassifier.swift */; };
@@ -55,6 +57,10 @@
 		3FB422E122C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
 		3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E022C3951B00BA3B71 /* FoscamControl.swift */; };
 		3FB422E722C4F56300BA3B71 /* FaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB422E622C4F56300BA3B71 /* FaceDetector.swift */; };
+		3FD603722871DE15008DE041 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3FD603712871DE15008DE041 /* YOLOv3.mlmodel */; };
+		3FD603732871DE15008DE041 /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3FD603712871DE15008DE041 /* YOLOv3.mlmodel */; };
+		3FD603752871DEDC008DE041 /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD603742871DEDC008DE041 /* ObjectDetector.swift */; };
+		3FD603762871DEDC008DE041 /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD603742871DEDC008DE041 /* ObjectDetector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +78,7 @@
 		3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConstants.swift; sourceTree = "<group>"; };
 		3F6D3DA322C5163700B038A0 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		3F6D3DAB22C5F72A00B038A0 /* NSImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageViewExtension.swift; sourceTree = "<group>"; };
+		3F90C6682892D2C400D1BEE2 /* alarmsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarmsound.mp3; sourceTree = "<group>"; };
 		3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AgeNet.mlmodel; sourceTree = "<group>"; };
 		3F9662C022CAAA71003B8665 /* AgeClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeClassifier.swift; sourceTree = "<group>"; };
 		3F9662C622CB53D7003B8665 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
@@ -92,6 +99,8 @@
 		3FAC4D1822CA3FC200BF2F3E /* ObjectDetectorDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectorDrawer.swift; sourceTree = "<group>"; };
 		3FB422E022C3951B00BA3B71 /* FoscamControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoscamControl.swift; sourceTree = "<group>"; };
 		3FB422E622C4F56300BA3B71 /* FaceDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetector.swift; sourceTree = "<group>"; };
+		3FD603712871DE15008DE041 /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
+		3FD603742871DEDC008DE041 /* ObjectDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +138,8 @@
 		3F43707322C64C040065502C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3F90C6682892D2C400D1BEE2 /* alarmsound.mp3 */,
+				3FD603712871DE15008DE041 /* YOLOv3.mlmodel */,
 				3F9662C622CB53D7003B8665 /* CNNEmotions.mlmodel */,
 				3F9662BD22CAAA02003B8665 /* AgeNet.mlmodel */,
 				3F43707422C64C040065502C /* GenderNet.mlmodel */,
@@ -175,6 +186,7 @@
 				3FAC4D0E22CA0BE400BF2F3E /* iOSXBridge.swift */,
 				3F47E1D822C7A49F00BA3AC7 /* LoginConstants.swift */,
 				3FAC4D0922C8265200BF2F3E /* VisionRequestManager.swift */,
+				3FD603742871DEDC008DE041 /* ObjectDetector.swift */,
 				3FB422E622C4F56300BA3B71 /* FaceDetector.swift */,
 				3FAC4D1822CA3FC200BF2F3E /* ObjectDetectorDrawer.swift */,
 				3F43707A22C65B960065502C /* VisionUtils.swift */,
@@ -277,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F2253E222C2D4760092AF77 /* Assets.xcassets in Resources */,
+				3F90C66A2892D2C500D1BEE2 /* alarmsound.mp3 in Resources */,
 				3F2253E522C2D4760092AF77 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +300,7 @@
 			files = (
 				3F9A7E2322C26CBD00EB2D15 /* LaunchScreen.storyboard in Resources */,
 				3F9A7E2022C26CBD00EB2D15 /* Assets.xcassets in Resources */,
+				3F90C6692892D2C500D1BEE2 /* alarmsound.mp3 in Resources */,
 				3F9A7E1E22C26CBA00EB2D15 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD603762871DEDC008DE041 /* ObjectDetector.swift in Sources */,
 				3FAC4D1022CA0BE400BF2F3E /* iOSXBridge.swift in Sources */,
 				3FAC4D0822C7DBC500BF2F3E /* Classifier.swift in Sources */,
 				3F43707922C65A2E0065502C /* GenderClassifier.swift in Sources */,
@@ -305,6 +320,7 @@
 				3FB422E722C4F56300BA3B71 /* FaceDetector.swift in Sources */,
 				3F6D3DAC22C5F72A00B038A0 /* NSImageViewExtension.swift in Sources */,
 				3F6D3DA522C5163700B038A0 /* ImageViewExtension.swift in Sources */,
+				3FD603732871DE15008DE041 /* YOLOv3.mlmodel in Sources */,
 				3FAC4D1A22CA3FC200BF2F3E /* ObjectDetectorDrawer.swift in Sources */,
 				3F9662BF22CAAA02003B8665 /* AgeNet.mlmodel in Sources */,
 				3FB422E222C3951B00BA3B71 /* FoscamControl.swift in Sources */,
@@ -343,9 +359,11 @@
 				3F43707522C64C040065502C /* GenderNet.mlmodel in Sources */,
 				3FAC4D1922CA3FC200BF2F3E /* ObjectDetectorDrawer.swift in Sources */,
 				3F47E1D922C7A49F00BA3AC7 /* LoginConstants.swift in Sources */,
+				3FD603722871DE15008DE041 /* YOLOv3.mlmodel in Sources */,
 				3F9A7E2B22C26CF300EB2D15 /* MJPEGLib.swift in Sources */,
 				3FAC4D1122CA151300BF2F3E /* MainViewController.swift in Sources */,
 				3F9662BE22CAAA02003B8665 /* AgeNet.mlmodel in Sources */,
+				3FD603752871DEDC008DE041 /* ObjectDetector.swift in Sources */,
 				3F9662CA22CB549E003B8665 /* EmotionClassifier.swift in Sources */,
 				3F6D3DA622C518AA00B038A0 /* FaceDetector.swift in Sources */,
 			);
@@ -394,7 +412,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmurru.TestFoscamCam-osx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -415,7 +433,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmurru.TestFoscamCam-osx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -546,6 +564,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T7NF5AK38P;
 				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -564,6 +583,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T7NF5AK38P;
 				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

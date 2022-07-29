@@ -71,7 +71,13 @@ class ObjectDetectorDrawer {
         
     }
     
+    func clear() {
+        draw([])
+    }
+    
     /// - Tag: DrawPaths
+    ///
+    ///
     func draw(_ objectObservations: [VNDetectedObjectObservation]) {
         guard let objectRectangleShapeLayer = self.detectedObjectRectangleShapeLayer
             else {
