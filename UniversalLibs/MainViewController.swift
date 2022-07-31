@@ -43,11 +43,11 @@ class MainViewController: UIViewController {
     var smoothConfidences : [String: VNConfidence] = [kCat: 0.0, kBird: 0.0, kPerson: 0.0]
     var smoothf : Float = 0.5
     
-    
-    
     @IBAction func toggleIR(_ sender: UIButton) {
         cameraController.toggleIR()
+        #if os(iOS)
         sender.isSelected = (cameraController as! FoscamControl).IRisOn
+        #endif
     }
     
     @IBAction func moveCameraRight(_ sender: UIButton) {
@@ -98,14 +98,18 @@ class MainViewController: UIViewController {
     @IBAction func enableBirdDetection(_ sender: Any) {
         if labelsOfInterest.contains(Self.kBird) {
             labelsOfInterest.remove(at: labelsOfInterest.firstIndex(of: Self.kBird)!)
+#if os(iOS)
             if let button = sender as? UIButton {
                 button.isSelected = false
             }
+#endif
         } else {
             labelsOfInterest.append(Self.kBird)
+#if os(iOS)
             if let button = sender as? UIButton {
                 button.isSelected = true
             }
+#endif
         }
         print("\(labelsOfInterest)")
     }
@@ -113,14 +117,18 @@ class MainViewController: UIViewController {
     @IBAction func enableCatDetection(_ sender: Any) {
         if labelsOfInterest.contains(Self.kCat) {
             labelsOfInterest.remove(at: labelsOfInterest.firstIndex(of: Self.kCat)!)
+#if os(iOS)
             if let button = sender as? UIButton {
                 button.isSelected = false
             }
+#endif
         } else {
             labelsOfInterest.append(Self.kCat)
+#if os(iOS)
             if let button = sender as? UIButton {
                 button.isSelected = true
             }
+#endif
         }
         print("\(labelsOfInterest)")
     }
@@ -128,14 +136,18 @@ class MainViewController: UIViewController {
     @IBAction func enablePersonDetection(_ sender: Any) {
         if labelsOfInterest.contains(Self.kPerson) {
             labelsOfInterest.remove(at: labelsOfInterest.firstIndex(of: Self.kPerson)!)
+#if os(iOS)
             if let button = sender as? UIButton {
                 button.isSelected = false
             }
+#endif
         } else {
             labelsOfInterest.append(Self.kPerson)
+#if os(iOS)
             if let button = sender as? UIButton {
                 button.isSelected = true
             }
+#endif
         }
         print("\(labelsOfInterest)")
     }
@@ -164,13 +176,19 @@ class MainViewController: UIViewController {
     }
     
     public func startStreaming() {
-        guard let cc = cameraController, !cc.isStreaming else { return }
+        guard let cc = cameraController, !cc.isStreaming else {
+            print("cant start streaming: cc:\(cameraController) isStreaming:\(cameraController?.isStreaming)")
+            return
+        }
         print("start streaming")
         cc.startStreaming()
     }
     
     public func stopStreaming() {
-        guard let cc = cameraController, cc.isStreaming else { return }
+        guard let cc = cameraController, cc.isStreaming else {
+            print("cant stop streaming: cc:\(cameraController) isStreaming:\(cameraController?.isStreaming)")
+            return
+        }
         print("stop streaming")
         cc.stopStreaming()
     }
